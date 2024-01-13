@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-const index = () => {
+const Home = () => {
+  const router = useRouter();
+  const { user } = router.query;
+
+  useEffect(() => {
+    const authenticatedUser = localStorage.getItem('authenticatedUser');
+    if (user !== authenticatedUser) {
+      router.replace(`/home?user=${encodeURIComponent(authenticatedUser)}`);
+    }
+  }, [user]);
+
   return (
     <div>
-      <h1>Welcome to Ecommerce</h1>
-      </div>
-  )
-}
+      <h1>This is {user}'s homepage</h1>
+    </div>
+  );
+};
 
-export default index
+export default Home;

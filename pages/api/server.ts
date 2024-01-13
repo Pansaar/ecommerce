@@ -1,5 +1,4 @@
 // /pages/api/server.js
-import router,{ useRouter } from 'next/router';
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcrypt';
@@ -27,7 +26,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Send a success response with the saved post data
     res.status(200).json({ message: 'Post saved successfully', login });
-    router.push(`/home?user=${encodeURIComponent(username)}`);
   } catch (error) {
     console.error(error);
     // Send an error response

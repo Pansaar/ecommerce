@@ -43,66 +43,6 @@ module.exports = require("next/dist/compiled/next-server/pages-api.runtime.dev.j
 
 /***/ }),
 
-/***/ "next/dist/compiled/next-server/pages.runtime.dev.js":
-/*!**********************************************************************!*\
-  !*** external "next/dist/compiled/next-server/pages.runtime.dev.js" ***!
-  \**********************************************************************/
-/***/ ((module) => {
-
-module.exports = require("next/dist/compiled/next-server/pages.runtime.dev.js");
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
-/***/ ((module) => {
-
-module.exports = require("react");
-
-/***/ }),
-
-/***/ "react-dom":
-/*!****************************!*\
-  !*** external "react-dom" ***!
-  \****************************/
-/***/ ((module) => {
-
-module.exports = require("react-dom");
-
-/***/ }),
-
-/***/ "fs":
-/*!*********************!*\
-  !*** external "fs" ***!
-  \*********************/
-/***/ ((module) => {
-
-module.exports = require("fs");
-
-/***/ }),
-
-/***/ "stream":
-/*!*************************!*\
-  !*** external "stream" ***!
-  \*************************/
-/***/ ((module) => {
-
-module.exports = require("stream");
-
-/***/ }),
-
-/***/ "zlib":
-/*!***********************!*\
-  !*** external "zlib" ***!
-  \***********************/
-/***/ ((module) => {
-
-module.exports = require("zlib");
-
-/***/ }),
-
 /***/ "(api)/./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fserver&preferredRegion=&absolutePagePath=.%2Fpages%5Capi%5Cserver.ts&middlewareConfigBase64=e30%3D!":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fserver&preferredRegion=&absolutePagePath=.%2Fpages%5Capi%5Cserver.ts&middlewareConfigBase64=e30%3D! ***!
@@ -119,7 +59,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next/router */ \"(api)/./node_modules/next/router.js\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bcrypt */ \"bcrypt\");\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bcrypt__WEBPACK_IMPORTED_MODULE_2__);\n// /pages/api/server.js\n\n\n\nconst prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_1__.PrismaClient();\nasync function handler(req, res) {\n    try {\n        // Establish a connection to the database\n        await prisma.$connect();\n        // Extract title and body from the request body\n        const { username, password } = req.body;\n        // Hash the password before saving it to the database\n        const hashedPassword = bcrypt__WEBPACK_IMPORTED_MODULE_2___default().hashSync(password, 10);\n        // Save data to the database\n        const login = await prisma.login.create({\n            data: {\n                username,\n                password: hashedPassword\n            }\n        });\n        // Send a success response with the saved post data\n        res.status(200).json({\n            message: \"Post saved successfully\",\n            login\n        });\n        next_router__WEBPACK_IMPORTED_MODULE_0___default().push(`/home?user=${encodeURIComponent(username)}`);\n    } catch (error) {\n        console.error(error);\n        // Send an error response\n        res.status(500).json({\n            error: \"Internal Server Error\"\n        });\n    } finally{\n        // Disconnect from the database\n        await prisma.$disconnect();\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvc2VydmVyLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFBQSx1QkFBdUI7QUFDd0I7QUFDRDtBQUVsQjtBQUU1QixNQUFNRyxTQUFTLElBQUlGLHdEQUFZQTtBQUVoQixlQUFlRyxRQUFRQyxHQUFtQixFQUFFQyxHQUFvQjtJQUM3RSxJQUFJO1FBQ0YseUNBQXlDO1FBQ3pDLE1BQU1ILE9BQU9JLFFBQVE7UUFFckIsK0NBQStDO1FBQy9DLE1BQU0sRUFBRUMsUUFBUSxFQUFFQyxRQUFRLEVBQUUsR0FBR0osSUFBSUssSUFBSTtRQUV2QyxxREFBcUQ7UUFDckQsTUFBTUMsaUJBQWlCVCxzREFBZSxDQUFDTyxVQUFVO1FBRWpELDRCQUE0QjtRQUM1QixNQUFNSSxRQUFRLE1BQU1WLE9BQU9VLEtBQUssQ0FBQ0MsTUFBTSxDQUFDO1lBQ3RDQyxNQUFNO2dCQUNKUDtnQkFDQUMsVUFBVUU7WUFDWjtRQUNGO1FBRUEsbURBQW1EO1FBQ25ETCxJQUFJVSxNQUFNLENBQUMsS0FBS0MsSUFBSSxDQUFDO1lBQUVDLFNBQVM7WUFBMkJMO1FBQU07UUFDakViLHVEQUFXLENBQUMsQ0FBQyxXQUFXLEVBQUVvQixtQkFBbUJaLFVBQVUsQ0FBQztJQUMxRCxFQUFFLE9BQU9hLE9BQU87UUFDZEMsUUFBUUQsS0FBSyxDQUFDQTtRQUNkLHlCQUF5QjtRQUN6QmYsSUFBSVUsTUFBTSxDQUFDLEtBQUtDLElBQUksQ0FBQztZQUFFSSxPQUFPO1FBQXdCO0lBQ3hELFNBQVU7UUFDUiwrQkFBK0I7UUFDL0IsTUFBTWxCLE9BQU9vQixXQUFXO0lBQzFCO0FBQ0YiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wYWdlcy9hcGkvc2VydmVyLnRzP2NiNTEiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gL3BhZ2VzL2FwaS9zZXJ2ZXIuanNcclxuaW1wb3J0IHJvdXRlcix7IHVzZVJvdXRlciB9IGZyb20gJ25leHQvcm91dGVyJztcclxuaW1wb3J0IHsgUHJpc21hQ2xpZW50IH0gZnJvbSAnQHByaXNtYS9jbGllbnQnO1xyXG5pbXBvcnQgeyBOZXh0QXBpUmVxdWVzdCwgTmV4dEFwaVJlc3BvbnNlIH0gZnJvbSAnbmV4dCc7XHJcbmltcG9ydCBiY3J5cHQgZnJvbSAnYmNyeXB0JztcclxuXHJcbmNvbnN0IHByaXNtYSA9IG5ldyBQcmlzbWFDbGllbnQoKTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIGhhbmRsZXIocmVxOiBOZXh0QXBpUmVxdWVzdCwgcmVzOiBOZXh0QXBpUmVzcG9uc2UpIHtcclxuICB0cnkge1xyXG4gICAgLy8gRXN0YWJsaXNoIGEgY29ubmVjdGlvbiB0byB0aGUgZGF0YWJhc2VcclxuICAgIGF3YWl0IHByaXNtYS4kY29ubmVjdCgpO1xyXG5cclxuICAgIC8vIEV4dHJhY3QgdGl0bGUgYW5kIGJvZHkgZnJvbSB0aGUgcmVxdWVzdCBib2R5XHJcbiAgICBjb25zdCB7IHVzZXJuYW1lLCBwYXNzd29yZCB9ID0gcmVxLmJvZHk7XHJcblxyXG4gICAgLy8gSGFzaCB0aGUgcGFzc3dvcmQgYmVmb3JlIHNhdmluZyBpdCB0byB0aGUgZGF0YWJhc2VcclxuICAgIGNvbnN0IGhhc2hlZFBhc3N3b3JkID0gYmNyeXB0Lmhhc2hTeW5jKHBhc3N3b3JkLCAxMCk7XHJcblxyXG4gICAgLy8gU2F2ZSBkYXRhIHRvIHRoZSBkYXRhYmFzZVxyXG4gICAgY29uc3QgbG9naW4gPSBhd2FpdCBwcmlzbWEubG9naW4uY3JlYXRlKHtcclxuICAgICAgZGF0YToge1xyXG4gICAgICAgIHVzZXJuYW1lLFxyXG4gICAgICAgIHBhc3N3b3JkOiBoYXNoZWRQYXNzd29yZCxcclxuICAgICAgfSxcclxuICAgIH0pO1xyXG5cclxuICAgIC8vIFNlbmQgYSBzdWNjZXNzIHJlc3BvbnNlIHdpdGggdGhlIHNhdmVkIHBvc3QgZGF0YVxyXG4gICAgcmVzLnN0YXR1cygyMDApLmpzb24oeyBtZXNzYWdlOiAnUG9zdCBzYXZlZCBzdWNjZXNzZnVsbHknLCBsb2dpbiB9KTtcclxuICAgIHJvdXRlci5wdXNoKGAvaG9tZT91c2VyPSR7ZW5jb2RlVVJJQ29tcG9uZW50KHVzZXJuYW1lKX1gKTtcclxuICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgY29uc29sZS5lcnJvcihlcnJvcik7XHJcbiAgICAvLyBTZW5kIGFuIGVycm9yIHJlc3BvbnNlXHJcbiAgICByZXMuc3RhdHVzKDUwMCkuanNvbih7IGVycm9yOiAnSW50ZXJuYWwgU2VydmVyIEVycm9yJyB9KTtcclxuICB9IGZpbmFsbHkge1xyXG4gICAgLy8gRGlzY29ubmVjdCBmcm9tIHRoZSBkYXRhYmFzZVxyXG4gICAgYXdhaXQgcHJpc21hLiRkaXNjb25uZWN0KCk7XHJcbiAgfVxyXG59XHJcbiJdLCJuYW1lcyI6WyJyb3V0ZXIiLCJQcmlzbWFDbGllbnQiLCJiY3J5cHQiLCJwcmlzbWEiLCJoYW5kbGVyIiwicmVxIiwicmVzIiwiJGNvbm5lY3QiLCJ1c2VybmFtZSIsInBhc3N3b3JkIiwiYm9keSIsImhhc2hlZFBhc3N3b3JkIiwiaGFzaFN5bmMiLCJsb2dpbiIsImNyZWF0ZSIsImRhdGEiLCJzdGF0dXMiLCJqc29uIiwibWVzc2FnZSIsInB1c2giLCJlbmNvZGVVUklDb21wb25lbnQiLCJlcnJvciIsImNvbnNvbGUiLCIkZGlzY29ubmVjdCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///(api)/./pages/api/server.ts\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @prisma/client */ \"@prisma/client\");\n/* harmony import */ var _prisma_client__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_prisma_client__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bcrypt */ \"bcrypt\");\n/* harmony import */ var bcrypt__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bcrypt__WEBPACK_IMPORTED_MODULE_1__);\n// /pages/api/server.js\n\n\nconst prisma = new _prisma_client__WEBPACK_IMPORTED_MODULE_0__.PrismaClient();\nasync function handler(req, res) {\n    try {\n        // Establish a connection to the database\n        await prisma.$connect();\n        // Extract title and body from the request body\n        const { username, password } = req.body;\n        // Hash the password before saving it to the database\n        const hashedPassword = bcrypt__WEBPACK_IMPORTED_MODULE_1___default().hashSync(password, 10);\n        // Save data to the database\n        const login = await prisma.login.create({\n            data: {\n                username,\n                password: hashedPassword\n            }\n        });\n        // Send a success response with the saved post data\n        res.status(200).json({\n            message: \"Post saved successfully\",\n            login\n        });\n    } catch (error) {\n        console.error(error);\n        // Send an error response\n        res.status(500).json({\n            error: \"Internal Server Error\"\n        });\n    } finally{\n        // Disconnect from the database\n        await prisma.$disconnect();\n    }\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvc2VydmVyLnRzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsdUJBQXVCO0FBQ3VCO0FBRWxCO0FBRTVCLE1BQU1FLFNBQVMsSUFBSUYsd0RBQVlBO0FBRWhCLGVBQWVHLFFBQVFDLEdBQW1CLEVBQUVDLEdBQW9CO0lBQzdFLElBQUk7UUFDRix5Q0FBeUM7UUFDekMsTUFBTUgsT0FBT0ksUUFBUTtRQUVyQiwrQ0FBK0M7UUFDL0MsTUFBTSxFQUFFQyxRQUFRLEVBQUVDLFFBQVEsRUFBRSxHQUFHSixJQUFJSyxJQUFJO1FBRXZDLHFEQUFxRDtRQUNyRCxNQUFNQyxpQkFBaUJULHNEQUFlLENBQUNPLFVBQVU7UUFFakQsNEJBQTRCO1FBQzVCLE1BQU1JLFFBQVEsTUFBTVYsT0FBT1UsS0FBSyxDQUFDQyxNQUFNLENBQUM7WUFDdENDLE1BQU07Z0JBQ0pQO2dCQUNBQyxVQUFVRTtZQUNaO1FBQ0Y7UUFFQSxtREFBbUQ7UUFDbkRMLElBQUlVLE1BQU0sQ0FBQyxLQUFLQyxJQUFJLENBQUM7WUFBRUMsU0FBUztZQUEyQkw7UUFBTTtJQUNuRSxFQUFFLE9BQU9NLE9BQU87UUFDZEMsUUFBUUQsS0FBSyxDQUFDQTtRQUNkLHlCQUF5QjtRQUN6QmIsSUFBSVUsTUFBTSxDQUFDLEtBQUtDLElBQUksQ0FBQztZQUFFRSxPQUFPO1FBQXdCO0lBQ3hELFNBQVU7UUFDUiwrQkFBK0I7UUFDL0IsTUFBTWhCLE9BQU9rQixXQUFXO0lBQzFCO0FBQ0YiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9wYWdlcy9hcGkvc2VydmVyLnRzP2NiNTEiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gL3BhZ2VzL2FwaS9zZXJ2ZXIuanNcclxuaW1wb3J0IHsgUHJpc21hQ2xpZW50IH0gZnJvbSAnQHByaXNtYS9jbGllbnQnO1xyXG5pbXBvcnQgeyBOZXh0QXBpUmVxdWVzdCwgTmV4dEFwaVJlc3BvbnNlIH0gZnJvbSAnbmV4dCc7XHJcbmltcG9ydCBiY3J5cHQgZnJvbSAnYmNyeXB0JztcclxuXHJcbmNvbnN0IHByaXNtYSA9IG5ldyBQcmlzbWFDbGllbnQoKTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGFzeW5jIGZ1bmN0aW9uIGhhbmRsZXIocmVxOiBOZXh0QXBpUmVxdWVzdCwgcmVzOiBOZXh0QXBpUmVzcG9uc2UpIHtcclxuICB0cnkge1xyXG4gICAgLy8gRXN0YWJsaXNoIGEgY29ubmVjdGlvbiB0byB0aGUgZGF0YWJhc2VcclxuICAgIGF3YWl0IHByaXNtYS4kY29ubmVjdCgpO1xyXG5cclxuICAgIC8vIEV4dHJhY3QgdGl0bGUgYW5kIGJvZHkgZnJvbSB0aGUgcmVxdWVzdCBib2R5XHJcbiAgICBjb25zdCB7IHVzZXJuYW1lLCBwYXNzd29yZCB9ID0gcmVxLmJvZHk7XHJcblxyXG4gICAgLy8gSGFzaCB0aGUgcGFzc3dvcmQgYmVmb3JlIHNhdmluZyBpdCB0byB0aGUgZGF0YWJhc2VcclxuICAgIGNvbnN0IGhhc2hlZFBhc3N3b3JkID0gYmNyeXB0Lmhhc2hTeW5jKHBhc3N3b3JkLCAxMCk7XHJcblxyXG4gICAgLy8gU2F2ZSBkYXRhIHRvIHRoZSBkYXRhYmFzZVxyXG4gICAgY29uc3QgbG9naW4gPSBhd2FpdCBwcmlzbWEubG9naW4uY3JlYXRlKHtcclxuICAgICAgZGF0YToge1xyXG4gICAgICAgIHVzZXJuYW1lLFxyXG4gICAgICAgIHBhc3N3b3JkOiBoYXNoZWRQYXNzd29yZCxcclxuICAgICAgfSxcclxuICAgIH0pO1xyXG5cclxuICAgIC8vIFNlbmQgYSBzdWNjZXNzIHJlc3BvbnNlIHdpdGggdGhlIHNhdmVkIHBvc3QgZGF0YVxyXG4gICAgcmVzLnN0YXR1cygyMDApLmpzb24oeyBtZXNzYWdlOiAnUG9zdCBzYXZlZCBzdWNjZXNzZnVsbHknLCBsb2dpbiB9KTtcclxuICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgY29uc29sZS5lcnJvcihlcnJvcik7XHJcbiAgICAvLyBTZW5kIGFuIGVycm9yIHJlc3BvbnNlXHJcbiAgICByZXMuc3RhdHVzKDUwMCkuanNvbih7IGVycm9yOiAnSW50ZXJuYWwgU2VydmVyIEVycm9yJyB9KTtcclxuICB9IGZpbmFsbHkge1xyXG4gICAgLy8gRGlzY29ubmVjdCBmcm9tIHRoZSBkYXRhYmFzZVxyXG4gICAgYXdhaXQgcHJpc21hLiRkaXNjb25uZWN0KCk7XHJcbiAgfVxyXG59XHJcbiJdLCJuYW1lcyI6WyJQcmlzbWFDbGllbnQiLCJiY3J5cHQiLCJwcmlzbWEiLCJoYW5kbGVyIiwicmVxIiwicmVzIiwiJGNvbm5lY3QiLCJ1c2VybmFtZSIsInBhc3N3b3JkIiwiYm9keSIsImhhc2hlZFBhc3N3b3JkIiwiaGFzaFN5bmMiLCJsb2dpbiIsImNyZWF0ZSIsImRhdGEiLCJzdGF0dXMiLCJqc29uIiwibWVzc2FnZSIsImVycm9yIiwiY29uc29sZSIsIiRkaXNjb25uZWN0Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(api)/./pages/api/server.ts\n");
 
 /***/ })
 
@@ -130,7 +70,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/@swc"], () => (__webpack_exec__("(api)/./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fserver&preferredRegion=&absolutePagePath=.%2Fpages%5Capi%5Cserver.ts&middlewareConfigBase64=e30%3D!")));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next"], () => (__webpack_exec__("(api)/./node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js?kind=PAGES_API&page=%2Fapi%2Fserver&preferredRegion=&absolutePagePath=.%2Fpages%5Capi%5Cserver.ts&middlewareConfigBase64=e30%3D!")));
 module.exports = __webpack_exports__;
 
 })();

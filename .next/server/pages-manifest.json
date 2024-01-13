@@ -5,5 +5,5 @@
   "/": "pages/index.js",
   "/home": "pages/home.js",
   "/register": "pages/register.js",
-  "/api/server": "pages/api/server.js"
+  "/api/login": "pages/api/login.js"
 }

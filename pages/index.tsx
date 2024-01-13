@@ -16,10 +16,9 @@ const Login = () => {
 
   const toRegister = () => {
     router.push('/register');
-  }
-  
+  };
+
   const handleLogin = async () => {
-    console.log('handleLogin executed');
     setSubmitted(true);
     setLoading(true);
 
@@ -29,21 +28,33 @@ const Login = () => {
         password,
       });
 
-      // Assuming the login was successful, set some authentication state
-      localStorage.setItem('authenticated', 'true');
-      localStorage.setItem('authenticatedUser', username);
+      if (response.status === 200) {
+        // Assuming the login was successful, set some authentication state
+        localStorage.setItem('authenticated', 'true');
+        localStorage.setItem('authenticatedUser', username);
 
-      // Clear form fields and navigate to the home page
-      setUsername('');
-      setPassword('');
-      setErrorMessage('');
-      setLoading(false);
-      router.push(`/home?user=${encodeURIComponent(username)}`);
+        // Clear form fields and navigate to the home page
+        setUsername('');
+        setPassword('');
+        setErrorMessage('');
+        setLoading(false);
+        router.push(`/home?user=${encodeURIComponent(username)}`);
+      } else {
+        setErrorMessage('Unexpected error occurred. Please try again.');
+        setLoading(false);
+        setSubmitted(false);
+      }
     } catch (error) {
-      console.error(error.response?.data.message || 'An error occurred');
-      setErrorMessage('Invalid credentials');
+      console.error('Login error:', error);
+
+      if (error.response && error.response.status === 401) {
+        setErrorMessage('Invalid username or password. Please try again.');
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.');
+      }
+
       setLoading(false);
-      setSubmitted(false)
+      setSubmitted(false);
     }
   };
 
@@ -66,6 +77,7 @@ const Login = () => {
         disabled={submitted || loading}
         onKeyPress={handleKeyPress}
         placeholder='Username'
+        maxLength={25}
       />
       <input
         type="password"
@@ -75,6 +87,7 @@ const Login = () => {
         disabled={submitted || loading}
         onKeyPress={handleKeyPress}
         placeholder='Password'
+        maxLength={25}
       />
       <button type="button" onClick={handleLogin} className='mb-3' disabled={submitted || loading}>
         {loading ? 'Logging in...' : 'Login'}
