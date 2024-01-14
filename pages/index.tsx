@@ -49,6 +49,7 @@ const Login = () => {
 
       if (error.response && error.response.status === 401) {
         setErrorMessage('Invalid username or password. Please try again.');
+        setPassword('')
       } else {
         setErrorMessage('An unexpected error occurred. Please try again.');
       }
