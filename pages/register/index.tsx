@@ -9,7 +9,6 @@ const Index = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('')
   const [submitted, setSubmitted] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
   const [loading, setLoading] = useState(false);
 
   const { isVisible, setShowError, message, setMessage } = useRegErrorStore();
@@ -79,9 +78,7 @@ const Index = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      // Prevent the default form submission behavior
       e.preventDefault();
-      // Call the handleSave function when Enter is pressed
       handleSave();
 
     }

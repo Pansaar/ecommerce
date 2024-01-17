@@ -38,7 +38,7 @@ const Login = () => {
         setPassword('');
         setErrorMessage('');
         setLoading(false);
-        router.push(`/home?user=${encodeURIComponent(username)}`);
+        router.replace(`/home?user=${encodeURIComponent(username)}`);
       } else {
         setErrorMessage('Unexpected error occurred. Please try again.');
         setLoading(false);

@@ -17,6 +17,6 @@
     "zustand": "^4.4.7"
   },
   "scripts": {
-    "dev": "next"
+    "brew": "echo Brewing... && echo Cheers!🍺 && next"
   }
 }
