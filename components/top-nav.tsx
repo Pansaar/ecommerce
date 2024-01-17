@@ -27,7 +27,7 @@ const topNav = () => {
             <p className='align-items-center d-flex mt-3' style={{cursor:"pointer"}}>Clothing</p>
             <p className='align-items-center d-flex mt-3' style={{cursor:"pointer"}}>Jewelery</p>
             <p className='align-items-center d-flex mt-3' style={{cursor:"pointer"}}>Food</p>
-            <p className='align-items-center d-flex mt-3' style={{cursor:"pointer"}}>Trending</p>
+            <p className='align-items-center d-flex mt-3' style={{cursor:"pointer"}}>Beauty</p>
             <input placeholder='Browse Products' className='mt-3' style={{width: "300px", height: "30px", padding: "2px 5px 2px 5px"}}></input>
         </div>
 </div>
