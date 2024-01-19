@@ -32,10 +32,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/myMerchant.js"
     ],
-    "/shoppingCart": [
+    "/profile": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/shoppingCart.js"
+      "static/chunks/pages/profile.js"
     ]
   },
   "ampFirstPages": []

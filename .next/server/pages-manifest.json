@@ -3,7 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/home": "pages/home.js",
-  "/profile": "pages/profile.js",
   "/myMerchant": "pages/myMerchant.js",
+  "/profile": "pages/profile.js",
   "/shoppingCart": "pages/shoppingCart.js"
 }
