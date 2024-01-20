@@ -1,18 +1,18 @@
-// Login.tsx
-
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import useAuthStore from '../store/user-auth'; // Update the path accordingly
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(''); // Changed variable name from authenticatedUser to username
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const router = useRouter();
+  const { authenticated, authenticatedUser, setAuthenticated, setAuthenticatedUser } = useAuthStore();
 
   const toRegister = () => {
     router.push('/register');
@@ -21,24 +21,25 @@ const Login = () => {
   const handleLogin = async () => {
     setSubmitted(true);
     setLoading(true);
-
+  
     try {
       const response = await axios.post('/api/login', {
         username,
         password,
       });
-
+  
       if (response.status === 200) {
-        // Assuming the login was successful, set some authentication state
-        localStorage.setItem('authenticated', 'true');
-        localStorage.setItem('authenticatedUser', username);
-
-        // Clear form fields and navigate to the home page
-        setUsername('');
+        // Assuming the login was successful, set Zustand state
+        setAuthenticated(true);
+        setAuthenticatedUser(username);
+  
+        // Clear form fields
         setPassword('');
         setErrorMessage('');
         setLoading(false);
-        router.replace(`/home?user=${encodeURIComponent(username)}`);
+  
+        // Use the callback to ensure the state is updated before navigation
+        router.push(`/home?user=${encodeURIComponent(username)}`, undefined, { shallow: true });
       } else {
         setErrorMessage('Unexpected error occurred. Please try again.');
         setLoading(false);
@@ -46,14 +47,14 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Login error:', error);
-
+  
       if (error.response && error.response.status === 401) {
         setErrorMessage('Invalid username or password. Please try again.');
-        setPassword('')
+        setPassword('');
       } else {
         setErrorMessage('An unexpected error occurred. Please try again.');
       }
-
+  
       setLoading(false);
       setSubmitted(false);
     }
