@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import LeftNav from '../../components/left-nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TopNav from '../../components/top-nav';
-import useAuthStore from '../../store/user-auth';
+import useAuthStore from '../../store/user-auth'
 
 const Home = () => {
   const router = useRouter();
@@ -14,21 +14,19 @@ const Home = () => {
   const [hoverRight, setHoverRight] = useState(false);
   const [hoverLeft, setHoverLeft] = useState(false);
   const [changingSlide, setChangingSlide] = useState(false);
-
-  const { authenticatedUser, authenticated,setAuthenticated, setAuthenticatedUser } = useAuthStore();
-
+  const { user: userParam } = router.query;
+  const {authenticated, authenticatedUser, setAuthenticated, setAuthenticatedUser} = useAuthStore()
 
   useEffect(() => {
-    if (user !== authenticatedUser) {
-      router.replace(`/home?user=${encodeURIComponent(authenticatedUser)}`);
-    }
-  }, []);
+    if (userParam !== authenticatedUser) {
+      router.push('/');
+    } else {
+      console.log("WTF")
+    }}, [userParam, router, authenticatedUser, authenticated]); 
+
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (user !== authenticatedUser) {
-        router.replace(`/home?user=${encodeURIComponent(authenticatedUser)}`);
-      }
       if (!changingSlide) {
         setChangingSlide(true);
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageArray.length);
@@ -71,7 +69,7 @@ const Home = () => {
           <div style={{ backgroundColor: 'white', position: 'relative' }}>
             <img
               src={`/${imageArray[currentImageIndex]}.jpg`}
-              style={{ maxWidth: '100%', maxHeight: '100%', boxShadow: '1px 1px 2px grey' }}
+              style={{ maxWidth: '100%', height: '900px', boxShadow: '1px 1px 2px grey' }}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
