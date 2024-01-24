@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import LeftNav from '../../components/left-nav';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import TopNav from '../../components/top-nav';
+import TopNav1 from '../../components/top-nav1';
+import TopNav2 from '../../components/top-nav2'
 import useAuthStore from '../../store/user-auth';
 
 const Home = () => {
   const router = useRouter();
-  const { user } = router.query;
-
   const imageArray = ['pic0', 'pic1', 'pic2'];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [hoverRight, setHoverRight] = useState(false);
@@ -51,7 +50,8 @@ const Home = () => {
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <LeftNav />
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <TopNav />
+        <TopNav1 />
+        <TopNav2 />
         <div
           style={{
             flex: 1,
