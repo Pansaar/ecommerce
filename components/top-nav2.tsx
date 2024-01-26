@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const TopNav1 = () => {
+const TopNav2 = () => {
 
   return (
-    <div>
+    <div style={{position: 'sticky', top: '0', zIndex: '1'}}>
       <div className='d-flex' style={{ padding: "10px", backgroundColor: "white", boxShadow: "1px 1px 2px grey", justifyContent: "space-between" }}>
         <h1 className='align-items-center d-flex'>Ecomm</h1>
         <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }}>Electronics</p>
@@ -26,4 +26,4 @@ const TopNav1 = () => {
   );
 };
 
-export default TopNav1;
+export default TopNav2;

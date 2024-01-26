@@ -25,7 +25,6 @@ const Home = () => {
   }, [userParam, router, authenticatedUser, setAuthenticated]);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
       if (!changingSlide) {
         setChangingSlide(true);
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageArray.length);
@@ -33,9 +32,6 @@ const Home = () => {
           setChangingSlide(false);
         }, 5000);
       }
-    }, 5000);
-
-    return () => clearInterval(intervalId);
   }, [changingSlide, imageArray.length]);
 
   const handleArrowClick = (direction) => {
