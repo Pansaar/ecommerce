@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { username, password } = req.body;
 
     // Find the user by username
-    const user = await prisma.login.findFirst({
+    const user = await prisma.user.findFirst({
       where: { username },
     });
 
