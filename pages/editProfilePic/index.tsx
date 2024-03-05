@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import userProfilePicState from '../../store/profilePic';
 import useAuthStore from '../../store/user-auth';
@@ -9,28 +9,40 @@ const Index = () => {
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
-  const [submit, setSubmit] = useState(false);
-  const {isProfile, setIsProfile} = userProfilePicState()
-  const {authenticatedUser, setAuthenticatedUser} = useAuthStore()
+  const [submitting, setSubmitting] = useState(false);
+  const { setIsProfile } = userProfilePicState();
+  const { authenticatedUser } = useAuthStore();
 
-  // Function to handle file selection
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
+  // Inside the useEffect hook in your Index component
 
-    // Create a temporary URL for the selected image
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreviewUrl(reader.result as string);
-    };
-    reader.readAsDataURL(file);
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      if (userParam) {
+        const response = await fetch(`/api/fetchProfilePic?user=${encodeURIComponent(userParam as string)}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.profilePic !== "") {
+            setIsProfile(true);
+            setImagePreviewUrl(data.profilePic); // Set the preview image URL directly
+          }
+        } else {
+          console.error('Failed to fetch profile picture');
+        }
+      }
+    } catch (error) {
+      console.error('Error updating profile picture:', error);
+    }
   };
 
-  // Inside your handleSubmit function
+  fetchData();
+}, [userParam, setIsProfile]);
+
+// Inside the handleSubmit function
+
 const handleSubmit = async (event) => {
   event.preventDefault();
-  setIsProfile(true)
-  setSubmit(true);
+  setSubmitting(true);
 
   try {
     const base64Image = await getBase64(selectedImage);
@@ -39,39 +51,48 @@ const handleSubmit = async (event) => {
       imageBase64: base64Image
     };
 
-    const response = await fetch('/api/updateProfilePic', {
+    const response = await fetch(`/api/updateProfilePic?user=${encodeURIComponent(userParam as string)}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json', // Set content type to JSON
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data), // Convert the data object to a JSON string
+      body: JSON.stringify(data),
     });
 
     if (response.ok) {
       console.log('Profile picture updated successfully!');
-      router.push(`/profile?user=${encodeURIComponent(authenticatedUser)}`, undefined, { shallow: true })
+      router.push(`/profile?user=${encodeURIComponent(authenticatedUser)}`, undefined, { shallow: true });
     } else {
       console.error('Failed to update profile picture');
-      setSubmit(false);
     }
   } catch (error) {
     console.error('Error updating profile picture:', error);
-    setSubmit(false);
+  } finally {
+    setSubmitting(false);
   }
 };
 
-const deletePic = () => {
-  setSubmit(false)
-  setIsProfile(false)
-  router.push(`/profile?user=${encodeURIComponent(authenticatedUser)}`, undefined, { shallow: true })
-}
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(file);
 
-  // Function to convert selected file to base64
-  const getBase64 = (file: File) => {
-    return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreviewUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const deletePic = () => {
+    setIsProfile(false);
+    router.push(`/profile?user=${encodeURIComponent(authenticatedUser)}`, undefined, { shallow: true });
+  };
+
+  const getBase64 = (file) => {
+    return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
+      reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     });
   };
@@ -91,10 +112,11 @@ const deletePic = () => {
             />
           </div>
         )}
-        <button type="submit" disabled={submit}>
-        {submit ? <span>Submitting...</span>:<span>Submit</span>}</button>    
+        <button type="submit" disabled={submitting}>
+          {submitting ? <span>Submitting...</span> : <span>Submit</span>}
+        </button>
       </form>
-      <button onClick={deletePic}>Delete</button>  
+      <button onClick={deletePic}>Delete</button>
     </div>
   );
 };

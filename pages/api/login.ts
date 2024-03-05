@@ -23,7 +23,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-
     // Send a success response with the user data
     res.status(200).json({ message: 'Login successful', user });
   } catch (error) {

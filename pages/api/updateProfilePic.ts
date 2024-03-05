@@ -6,23 +6,30 @@ const prisma = new PrismaClient();
 
 // Define your API handler
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
-    try {
-      const { imageBase64 } = req.body; 
+  try {
+    if (req.method === 'POST') {
+      const { imageBase64 } = req.body;
 
-      const userId = '659ab000a596c1b169636b2c';
+      const userParam = req.query.user;
+      const user = await prisma.user.findFirst({
+        where: { username: userParam as string },
+      });
+
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
 
       const updatedUser = await prisma.user.update({
-        where: { id: userId },
+        where: { id: user.id },
         data: { profilePic: imageBase64 },
       });
 
-      res.status(200).json({ message: 'Profile picture updated successfully', user: updatedUser });
-    } catch (error) {
-      console.error('Error updating profile picture:', error);
-      res.status(500).json({ error: 'Internal server error' });
+      return res.status(200).json({ message: 'Profile picture updated successfully', user: updatedUser, userId: updatedUser.id });
+    } else {
+      return res.status(405).json({ error: 'Method Not Allowed' });
     }
-  } else {
-    res.status(405).json({ error: 'Method Not Allowed' });
+  } catch (error) {
+    console.error('Error updating profile picture:', error);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 }

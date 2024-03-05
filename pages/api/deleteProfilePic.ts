@@ -1,23 +1,28 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
+import useAuthStore from '../../store/user-auth';
 
 // Initialize Prisma client
 const prisma = new PrismaClient();
+const {authenticatedUser} = useAuthStore()
 
 // Define your API handler
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { user: userParam } = req.query as { user: string };
-  if (req.method === 'GET') {
+  if (req.method === 'DELETE') {
     try {
-      const updatedUser = await prisma.user.findFirst({
-        where: { username: userParam },
+
+      // Fetch the user's profile from the database
+      const userProfile = await prisma.user.findFirst({
+        where: { username: authenticatedUser as string }
       });
 
-      if (updatedUser) {
-        const profilePic = updatedUser.profilePic;
-        const username = updatedUser.username
+      // Check if the user exists
+      if (userProfile) {
+        // Extract the profilePic field from the userProfile
+        const profilePic = userProfile.profilePic;
+
         // Send the profilePic in the response
-        res.status(200).json({ message: 'Profile picture fetched successfully', profilePic, username });
+        res.status(200).json({ message: 'Profile picture deleted successfully', profilePic });
       } else {
         res.status(404).json({ error: 'User not found' });
       }
