@@ -13,8 +13,6 @@ const Index = () => {
   const { setIsProfile } = userProfilePicState();
   const { authenticatedUser } = useAuthStore();
 
-  // Inside the useEffect hook in your Index component
-
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -24,7 +22,7 @@ useEffect(() => {
           const data = await response.json();
           if (data.profilePic !== "") {
             setIsProfile(true);
-            setImagePreviewUrl(data.profilePic); // Set the preview image URL directly
+            setImagePreviewUrl(data.profilePic);
           }
         } else {
           console.error('Failed to fetch profile picture');
@@ -99,6 +97,7 @@ const handleSubmit = async (event) => {
 
   return (
     <div>
+      <title>Edit User Profile</title>
       <h1>Change Profile Picture</h1>
       <form onSubmit={handleSubmit}>
         <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: '20px' }} />

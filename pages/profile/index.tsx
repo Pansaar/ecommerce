@@ -52,6 +52,7 @@
 
     return (
       <div>
+        <title>Profile</title>
         <TopNav1 />
         <LeftNav />
         <div className='d-flex' style={{backgroundColor: 'rgb(128, 0, 32)', height: '180px'}}>

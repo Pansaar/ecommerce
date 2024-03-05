@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import useAuthStore from '../store/user-auth'; // Update the path accordingly
+import useAuthStore from '../store/user-auth';
+import { useEffect } from 'react';
 
 const Login = () => {
   const [username, setUsername] = useState(''); // Changed variable name from authenticatedUser to username
@@ -67,8 +68,9 @@ const Login = () => {
     }
   };
 
-  return (
+  return(
     <div className='d-flex flex-column vh-100 align-items-center justify-content-center'>
+      <title>Login</title>
       <h2>Login</h2>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <input
