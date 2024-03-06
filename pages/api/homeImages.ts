@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const imageArray = ['pic0.jpg', 'pic1.jpg', 'pic2.jpg'];
+const imageList = ['iphone.jpg', 'keyboard.jpg', 'sennheiser.jpg', 'thinkpad.jpg']
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
@@ -8,7 +9,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   } else if (req.method === 'POST') {
     handlePostRequest(req, res);
   } else {
-    res.status(405).end();
+    res.status(405).end('Failed to Post');
   }
 }
 
@@ -16,12 +17,9 @@ function handleGetRequest(req: NextApiRequest, res: NextApiResponse) {
   const { index } = req.query;
   const currentIndex = parseInt(index as string, 10);
 
-  // Check if the requested index is within the bounds
   if (currentIndex >= 0 && currentIndex < imageArray.length) {
-    // Construct the path to the image file without /public
     const imagePath = `${imageArray[currentIndex]}`;
 
-    // Send the image path in the response
     res.status(200).json({ imagePath });
   } else {
     res.status(404).end('Image not found');
@@ -44,3 +42,6 @@ async function handlePostRequest(req: NextApiRequest, res: NextApiResponse) {
     res.status(500).end('Internal Server Error');
   }
 }
+
+export { imageArray };
+export { imageList }
