@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import userProfilePicState from '../../store/profilePic';
 import useAuthStore from '../../store/user-auth';
+import axios from 'axios';
 
 const Index = () => {
   const router = useRouter();
@@ -12,6 +13,7 @@ const Index = () => {
   const [submitting, setSubmitting] = useState(false);
   const { setIsProfile } = userProfilePicState();
   const { authenticatedUser } = useAuthStore();
+  const [deleting, setDeleting] = useState(false)
 
 useEffect(() => {
   const fetchData = async () => {
@@ -81,11 +83,25 @@ const handleSubmit = async (event) => {
     reader.readAsDataURL(file);
   };
 
-  const deletePic = () => {
-    setIsProfile(false);
-    router.push(`/profile?user=${encodeURIComponent(authenticatedUser)}`, undefined, { shallow: true });
+  const deletePic = async () => {
+    setDeleting(true)
+    try {  
+      if (authenticatedUser) {
+        const response = await axios.delete(`/api/deleteProfilePic?user=${encodeURIComponent(authenticatedUser)}`);
+  
+        if (response.status === 200) {
+          console.log('Profile picture deleted successfully');
+          setIsProfile(false)
+          router.push(`/profile?user=${encodeURIComponent(authenticatedUser)}`, undefined, { shallow: true });
+        } else {
+          console.error('Failed to delete profile picture');
+        }
+      }
+    } catch (error) {
+      console.error('Error deleting profile picture:', error);
+    }
   };
-
+  
   const getBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -115,7 +131,7 @@ const handleSubmit = async (event) => {
           {submitting ? <span>Submitting...</span> : <span>Submit</span>}
         </button>
       </form>
-      <button onClick={deletePic}>Delete</button>
+      <button disabled={deleting} onClick={deletePic}>{deleting ? <span>Deleting...</span>:<span>Delete</span>}</button>
     </div>
   );
 };

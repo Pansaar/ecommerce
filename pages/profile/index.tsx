@@ -14,6 +14,7 @@
     const { user: userParam } = router.query;
     const {isProfile, setIsProfile} = userProfilePicState()
     const [profilePic, setProfilePic] = useState('');
+    console.log(isProfile)
     useEffect(() => {
       if (userParam === undefined) {
         setAuthenticated(false);
@@ -79,7 +80,7 @@
           <div style={{backgroundColor: 'rgb(128, 0, 32)', marginTop: '10px', padding: '15px', borderRadius: '50%', cursor: 'pointer'}}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={40} fill='white'><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V192c0-35.3-28.7-64-64-64H80c-8.8 0-16-7.2-16-16s7.2-16 16-16H448c17.7 0 32-14.3 32-32s-14.3-32-32-32H64zM416 272a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
           </div>
-          <p style={{textAlign: 'center', marginTop: '5px'}}>wtf</p>
+          <p style={{textAlign: 'center', marginTop: '5px'}}>Wallet</p>
         </div>
         <div>
         <div style={{backgroundColor: '#54A88C', marginTop: '10px', padding: '15px', borderRadius: '50%', cursor: 'pointer'}}>
@@ -87,7 +88,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width={50} fill='white'><path d="M0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64v64c0 8.8-7.4 15.7-15.7 18.6C541.5 217.1 528 235 528 256s13.5 38.9 32.3 45.4c8.3 2.9 15.7 9.8 15.7 18.6v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320c0-8.8 7.4-15.7 15.7-18.6C34.5 294.9 48 277 48 256s-13.5-38.9-32.3-45.4C7.4 207.7 0 200.8 0 192V128z"/></svg>
           </div>
         </div>
-          <p style={{textAlign: 'center', marginTop: '5px'}}>wtf</p>
+          <p style={{textAlign: 'center', marginTop: '5px'}}>Coupons</p>
         </div>
         <div>
         <div style={{backgroundColor: 'rgb(25, 25, 112)', marginTop: '10px', padding: '15px', borderRadius: '50%', cursor: 'pointer'}}>
@@ -95,14 +96,14 @@
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" width={50} fill='white'><path d="M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48zM416 160h50.7L544 237.3V256H416V160zM112 416a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm368-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
         </div>
         </div>
-          <p style={{textAlign: 'center', marginTop: '5px'}}>wtf</p>
+          <p style={{textAlign: 'center', marginTop: '5px'}}>Delivery</p>
         </div>
       <div>
         <div style={{marginRight: '80px'}}>
           <div style={{backgroundColor: 'rgb(204,204,0)', marginTop: '10px', padding: '15px', borderRadius: '50%', cursor: 'pointer'}}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width={50} fill='white'><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
         </div>
-        <p style={{textAlign: 'center', marginTop: '5px'}}>wtf</p>
+        <p style={{textAlign: 'center', marginTop: '5px'}}>Ratings</p>
         </div>
       </div>
       </div>
