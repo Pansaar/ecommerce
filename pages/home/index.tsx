@@ -5,16 +5,33 @@ import TopNav2 from '../../components/top-nav2';
 import axios from 'axios';
 import { productSlide } from '../api/homeImagesArray';
 import { useRouter } from 'next/router';
-import { getBase64Images } from '../api/homeProducts';
+import { getBase64ImagesWithDetails } from '../api/homeProducts';
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imagePath, setImagePath] = useState('');
-  const [base64Images, setBase64Images] = useState([]);
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter()
   const userParam = router.query.user;
 
+  function onMouseEnterApply(index) {
+    if (index >= 0) {
+      const imageElement = document.getElementById(`prodContainer${index}`);
+      if (imageElement) {
+        imageElement.style.backgroundColor = 'lightGrey';
+      }
+    }
+  }
+
+  function onMouseLeaveApply(index) {
+    if (index >= 0) {
+      const imageElement = document.getElementById(`prodContainer${index}`);
+      if (imageElement) {
+        imageElement.style.backgroundColor = 'white';
+      }
+    }
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -31,19 +48,18 @@ const Home = () => {
   }, [currentImageIndex]);
 
   useEffect(() => {
-  async function fetchProducts() {
-    try {
-      const response = await axios.get('/api/homeProducts');
-      setBase64Images(response.data.base64Images);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('Error fetching base64 images:', error);
+    async function fetchProducts() {
+      try {
+        const response = await axios.get('/api/homeProducts');
+        setProducts(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
     }
-  }
-  fetchProducts();
-}, []);
+    fetchProducts();
+  }, []);
 
-  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % productSlide.length);
@@ -51,7 +67,6 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, []);
-  
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -97,8 +112,8 @@ const Home = () => {
             width={80}
             style={{
               position: 'absolute',
-              marginRight: '90%',
-              marginBottom: '20%',
+              top: '90%',
+              right: '90%',
               cursor: 'pointer',
             }}
             onMouseEnter={() => (document.getElementById('leftArrow').style.fill = 'white')}
@@ -115,9 +130,9 @@ const Home = () => {
             width={80}
             style={{
               position: 'absolute',
-              marginLeft: '90%',
-              marginBottom: '20%',
-              cursor: 'pointer',
+              top: '90%',
+              left: '90%',
+              cursor: 'pointer'
             }}
             onMouseEnter={() => (document.getElementById('rightArrow').style.fill = 'white')}
             onMouseLeave={() => (document.getElementById('rightArrow').style.fill = 'lightGrey')}
@@ -125,12 +140,22 @@ const Home = () => {
           >
             <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z" />
           </svg>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-            {base64Images.map((base64Image, index) => (
-            <img key={index} src={base64Image} alt={`Image ${index}`} style={{ maxWidth: '20%', flex: '0 0 auto', margin: '50px 20px 20px 20px' }} />
+          <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+          {products.map((product, index) => (
+            <div id={`prodContainer${index}`} key={index} style={{ width: '20%', flex: '0 0 auto', margin: '50px 20px 20px 20px', cursor: 'pointer', border: 'solid 1px lightGrey', padding: '20px 20px 40px 20px' }}
+              onMouseEnter={() => onMouseEnterApply(index)}
+              onMouseLeave={() => onMouseLeaveApply(index)}>
+              <img
+                src={product.image}
+                style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }}
+                id={`prodImages${index}`}
+              />
+              <p style={{marginTop: '40px'}}>{product.name}</p>
+              <p>{product.price} THB</p>
+              <p>{product.description}</p>
+            </div>
           ))}
           </div>
-
         </div>
       </div>
     </div>
