@@ -72,10 +72,9 @@ const index = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: '20px' }} />
-        {imagePreviewUrl && (
+      {imagePreviewUrl && (
           <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative', boxShadow: '1px 1px 5px lightgrey', paddingBottom: '20px', marginBottom: '20px' }}>
-            <h2>Preview:</h2>
+            <h2 style={{marginLeft: '10px'}}>Preview:</h2>
             <img
               src={imagePreviewUrl}
               alt="Selected"
@@ -83,8 +82,9 @@ const index = () => {
             />
           </div>
         )}
+        <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: '20px' }} />
         <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
-          <h3 style={{ paddingRight: '10px' }}>Product Name:</h3>
+          <p style={{ paddingRight: '10px', marginTop: '10px' }}>Product Name:</p>
           <input
             type="text"
             placeholder="Enter product name"
@@ -93,7 +93,7 @@ const index = () => {
           />
         </div>
         <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
-          <h3 style={{ paddingRight: '10px' }}>Price:</h3>
+          <p style={{ paddingRight: '10px', marginTop: '10px' }}>Price:</p>
           <input
             type="text"
             placeholder="Enter product price"
@@ -102,7 +102,7 @@ const index = () => {
           />
         </div>
         <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
-          <h3 style={{ paddingRight: '10px' }}>Description:</h3>
+          <p style={{ paddingRight: '10px', marginTop: '10px' }}>Description:</p>
           <input
             type="text"
             placeholder="Enter product description"

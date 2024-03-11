@@ -5,13 +5,13 @@ import TopNav2 from '../../components/top-nav2';
 import axios from 'axios';
 import { productSlide } from '../api/homeImagesArray';
 import { useRouter } from 'next/router';
-import { getBase64ImagesWithDetails } from '../api/homeProducts';
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imagePath, setImagePath] = useState('');
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [moreProducts, setMoreProducts] = useState(-8)
   const router = useRouter()
   const userParam = router.query.user;
 
@@ -31,6 +31,10 @@ const Home = () => {
         imageElement.style.backgroundColor = 'white';
       }
     }
+  }
+
+  async function loadMoreProducts() {
+    setMoreProducts(moreProducts - 8);
   }
 
   useEffect(() => {
@@ -53,6 +57,7 @@ const Home = () => {
         const response = await axios.get('/api/homeProducts');
         setProducts(response.data);
         setIsLoading(false);
+        document.getElementById('moreProducts').style.display = 'block'
       } catch (error) {
         console.error('Error fetching products:', error);
       }
@@ -141,21 +146,33 @@ const Home = () => {
             <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM294.6 135.1c-4.2-4.5-10.1-7.1-16.3-7.1C266 128 256 138 256 150.3V208H160c-17.7 0-32 14.3-32 32v32c0 17.7 14.3 32 32 32h96v57.7c0 12.3 10 22.3 22.3 22.3c6.2 0 12.1-2.6 16.3-7.1l99.9-107.1c3.5-3.8 5.5-8.7 5.5-13.8s-2-10.1-5.5-13.8L294.6 135.1z" />
           </svg>
           <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-          {products.map((product, index) => (
-            <div id={`prodContainer${index}`} key={index} style={{ width: '20%', flex: '0 0 auto', margin: '50px 20px 20px 20px', cursor: 'pointer', border: 'solid 1px lightGrey', padding: '20px 20px 40px 20px' }}
-              onMouseEnter={() => onMouseEnterApply(index)}
-              onMouseLeave={() => onMouseLeaveApply(index)}>
-              <img
-                src={product.image}
-                style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }}
-                id={`prodImages${index}`}
-              />
-              <p style={{marginTop: '40px'}}>{product.name}</p>
-              <p>{product.price} THB</p>
-              <p>{product.description}</p>
-            </div>
-          ))}
+          {products.slice(moreProducts).reverse().map((product, index) => (
+  <div
+    id={`prodContainer${index}`}
+    key={index}
+    style={{
+      width: '20%',
+      flex: '0 0 auto',
+      margin: '50px 20px 20px 20px',
+      cursor: 'pointer',
+      border: 'solid 1px lightGrey',
+      padding: '20px 20px 40px 20px',
+    }}
+    onMouseEnter={() => onMouseEnterApply(index)}
+    onMouseLeave={() => onMouseLeaveApply(index)}
+  >
+    <img
+      src={product.image}
+      style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }}
+      id={`prodImages${index}`}
+    />
+    <p style={{ marginTop: '40px' }}>{product.name}</p>
+    <p>{product.price} THB</p>
+    <p>{product.description}</p>
+  </div>
+))}
           </div>
+          <h3 id = 'moreProducts' style={{fontWeight: '200', color: '#800020', margin: '20px 0px 40px 0px', cursor: 'pointer', display: 'none'}} onClick={loadMoreProducts}>More Products</h3>
         </div>
       </div>
     </div>
