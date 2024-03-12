@@ -25,11 +25,18 @@ const Index = () => {
   }, [searchParam]);
 
   return (
-    <div>
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
       {showProducts.map((product, index) => (
-        <div key={index}>
-          <h2>{product.name}</h2>
-          <img src={product.image} alt={product.name} style={{ width: '200px' }} />
+        <div key={index} style={{
+          width: '20%',
+          flex: '0 0 auto',
+          margin: '50px 20px 20px 20px',
+          cursor: 'pointer',
+          border: 'solid 1px lightGrey',
+          padding: '20px 20px 40px 20px',
+        }}>
+          <p>{product.name}</p>
+          <img src={product.image} alt={product.name} style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }} />
           <p>{product.description}</p>
           <p>{product.price}</p>
         </div>
