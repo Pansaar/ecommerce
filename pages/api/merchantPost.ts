@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     if (req.method === 'POST') {
-      const { imageBase64, name, price, description } = req.body;
+      const { imageBase64, name, price, description, amount } = req.body;
       const userParam = req.query.user;
 
       // Find the user
@@ -19,7 +19,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ error: 'User not found' });
       }
 
-      // Create the product
       const product = await prisma.products.create({
         data: {
           name,
@@ -27,8 +26,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           price: parseFloat(price),
           image: imageBase64,
           sellerId: user.id,
+          amount: parseInt(amount)
         },
-      });
+      });      
 
       return res.status(200).json({ message: 'Product added successfully', product });
     } else {

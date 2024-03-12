@@ -8,6 +8,24 @@ const Index = () => {
   const searchParam = router.query.result;
   const [showProducts, setShowProducts] = useState([]);
 
+  function applyMouseEnter(index) {
+    if (index >= 0) {
+      const imageElement = document.getElementById(`prodContainer${index}`);
+      if (imageElement) {
+        imageElement.style.backgroundColor = 'lightGrey';
+      }
+    }  
+  }
+
+  function applyMouseLeave(index) {
+    if (index >= 0) {
+      const imageElement = document.getElementById(`prodContainer${index}`);
+      if (imageElement) {
+        imageElement.style.backgroundColor = 'white';
+      }
+    }  
+  }
+
   useEffect(() => {
     async function fetchProducts() {
       try {
@@ -26,8 +44,8 @@ const Index = () => {
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {showProducts.map((product, index) => (
-        <div key={index} style={{
+      {showProducts.reverse().map((product, index) => (
+        <div id = {`prodContainer${index}`} key={index} onMouseEnter={() => applyMouseEnter(index)} onMouseLeave={() => applyMouseLeave(index)} style={{
           width: '20%',
           flex: '0 0 auto',
           margin: '50px 20px 20px 20px',
