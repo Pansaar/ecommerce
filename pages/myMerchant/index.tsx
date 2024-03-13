@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'; 
 import useAuthStore from '../../store/user-auth';
-import { transform } from 'next/dist/build/swc';
+import TopNav1 from '../../components/top-nav1';
+import LeftNav from '../../components/left-nav';
 
 const Index = () => {
 
@@ -15,6 +16,7 @@ const Index = () => {
   const [productPrice, setProductPrice] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productAmount, setProductAmount] = useState('')
+  const [productCategory, setProductCategory] = useState('')
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -40,9 +42,9 @@ const Index = () => {
     event.preventDefault();
     if(parseFloat(productAmount)%1 !== 0) {
       document.getElementById('amountError').style.display = 'block'
-    } else if(parseFloat(productPrice)%0.01 !== 0) {
+    } else if(!parseFloat(productPrice).toFixed(2)) {
       document.getElementById('priceError').style.display = 'block'
-    } else if(parseFloat(productAmount)%1 === 0 && parseFloat(productPrice)%0.01 === 0) {
+    } else if(parseFloat(productAmount)%1 === 0 && parseFloat(productPrice).toFixed(2)) {
     setSubmitting(true);
 
     try {
@@ -53,8 +55,9 @@ const Index = () => {
         imageBase64: base64Image,
         name: productName,
         price: productPrice,
-        amount: productAmount,
         description: productDescription,
+        amount: productAmount,
+        category: productCategory
       };
   
       const response = await fetch(`/api/merchantPost?user=${encodeURIComponent(userParam as string)}`, {
@@ -81,10 +84,13 @@ const Index = () => {
 
   return (
     <div>
+      <TopNav1 />
+      <LeftNav />
       <form onSubmit={handleSubmit}>
+        <div style={{ height: '500px', width: '100%', overflow: 'hidden', position: 'relative', boxShadow: '1px 1px 5px lightgrey'}}>
+        <h2 style={{margin: '20px 0px 0px 20px'}}>Preview:</h2>
         {imagePreviewUrl && (
-          <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative', boxShadow: '1px 1px 5px lightgrey', paddingBottom: '20px', marginBottom: '20px' }}>
-            <h2 style={{marginLeft: '10px'}}>Preview:</h2>
+          <div style={{ marginBottom: '20px', paddingTop: '50px' }}>
             <img
               src={imagePreviewUrl}
               alt="Selected"
@@ -92,17 +98,21 @@ const Index = () => {
             />
           </div>
         )}
-        <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: '20px' }} />
-        <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
-          <p style={{ paddingRight: '10px', marginTop: '10px' }}>Product Name:</p>
+        </div>
+        <input type="file" accept="image/*" onChange={handleImageChange} style={{ margin: '20px 0px 20px 10px' }} />
+        <div style={{ marginLeft: '10px'}}>
+        <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
+          <p style={{ paddingRight: '10px', marginTop: '10px'}}>Product Name:</p>
           <input
             type="text"
             placeholder="Enter product name"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
+            maxLength={255}
+            style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
           />
-        </div>
-        <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
+      </div>
+        <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px' }}>Price:</p>
           <input
             type="number"
@@ -110,30 +120,55 @@ const Index = () => {
             step="0.01" 
             value={productPrice}
             onChange={(e) => setProductPrice(e.target.value)}
+            maxLength={255}
+            min='0'
+            style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
           />
         </div>
-        <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px' }}>Amount:</p>
           <input
             type="number"
             placeholder="Enter product amount"
             value={productAmount}
             onChange={(e) => setProductAmount(e.target.value)}
+            maxLength={255}
+            min='0'
+            style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
           />
         </div>
-        <div className="input-container" style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px' }}>Description:</p>
           <input
             type="text"
             placeholder="Enter product description"
             value={productDescription}
             onChange={(e) => setProductDescription(e.target.value)}
+            maxLength={255}
+            style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
           />
         </div>
-        <button type="submit" disabled={submitting}>
+        <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
+        <label htmlFor="category" style={{ paddingRight: '10px', marginTop: '10px', marginBottom: '10px' }}>Category</label>
+        <select
+          value={productCategory}
+          onChange={(e) => setProductCategory(e.target.value)}
+          style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
+        >
+          <option value="">Select a category...</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="jewelery">Jewelery</option>
+          <option value="food">Food</option>
+          <option value="beauty">Beauty</option>
+        </select>
+      </div>
+        <button type="submit" disabled={submitting} style={{marginTop: '50px', padding: '2px 20px 2px 20px', borderRadius: '5px'}}>
           {submitting ? <span>Submitting...</span> : <span>Submit</span>}
         </button>
+        </div>
       </form>
+      
       <div id = 'priceError' style={{
             display: 'none',
             position: 'fixed',

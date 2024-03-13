@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     if (req.method === 'POST') {
-      const { imageBase64, name, price, description, amount } = req.body;
+      const { imageBase64, name, price, description, amount, category } = req.body;
       const userParam = req.query.user;
 
       // Find the user
@@ -26,7 +26,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           price: parseFloat(price),
           image: imageBase64,
           sellerId: user.id,
-          amount: parseInt(amount)
+          amount: parseInt(amount),
+          category
         },
       });      
 

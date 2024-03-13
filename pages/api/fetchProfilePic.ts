@@ -16,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (updatedUser) {
         const profilePic = updatedUser.profilePic;
         const username = updatedUser.username
-        // Send the profilePic in the response
         res.status(200).json({ message: 'Profile picture fetched successfully', profilePic, username });
       } else {
         res.status(404).json({ error: 'User not found' });

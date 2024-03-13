@@ -85,6 +85,8 @@ const Home = () => {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % productSlide.length);
   }
 
+  
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <title>Homepage</title>
@@ -169,7 +171,6 @@ const Home = () => {
     <p style={{ marginTop: '40px' }}>{product.name}</p>
     <p>Price: {product.price} THB</p>
     <p>Amount: {product.amount}</p>
-    <p>Description: {product.description}</p>
   </div>
 ))}
           </div>

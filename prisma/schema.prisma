@@ -31,6 +31,7 @@ model Products {
   sellerId      String   @map("_sellerId")
   amount        Int    
   updatedAt     DateTime @default(now())
+  category      String
 }
 
 
