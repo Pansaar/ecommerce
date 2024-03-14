@@ -2,20 +2,25 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import TopNav1 from '../../../components/top-nav1';
+import TopNav2 from '../../../components/top-nav2';
+import LeftNav from '../../../components/left-nav';
 
 const Index = () => {
   const router = useRouter();
   const searchParam = router.query.result;
   const [showProducts, setShowProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const fetchElectronics = async () => {
+      setIsLoading(true)
       try {
           const response = await fetch(`/api/fetchJewelery`);
           if (response.ok) {
             const data = await response.json();
-            setShowProducts(data)
-
+            setShowProducts(data.reverse())
+            setIsLoading(false)
           } else {
             console.error('Failed to fetch profile picture');
           }
@@ -46,8 +51,13 @@ const Index = () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {showProducts.reverse().map((product, index) => (
+    <div>
+      <TopNav1 />
+      <TopNav2 />
+      <LeftNav />
+      {isLoading ? <p>Fetching products...</p>:<p></p>}
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      {showProducts.map((product, index) => (
         <div id = {`prodContainer${index}`} key={index} onMouseEnter={() => applyMouseEnter(index)} onMouseLeave={() => applyMouseLeave(index)} style={{
           width: '20%',
           flex: '0 0 auto',
@@ -62,6 +72,7 @@ const Index = () => {
           <p>{product.price}</p>
         </div>
       ))}
+      </div>
     </div>
   );
 };

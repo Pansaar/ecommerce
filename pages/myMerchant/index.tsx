@@ -112,6 +112,21 @@ const Index = () => {
             style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
           />
       </div>
+      <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
+        <label htmlFor="category" style={{ paddingRight: '10px', marginTop: '10px', marginBottom: '10px' }}>Category</label>
+        <select
+          value={productCategory}
+          onChange={(e) => setProductCategory(e.target.value)}
+          style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
+        >
+          <option value="">Select a category...</option>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="jewelery">Jewelery</option>
+          <option value="food">Food</option>
+          <option value="beauty">Beauty</option>
+        </select>
+      </div>
         <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px' }}>Price:</p>
           <input
@@ -148,21 +163,6 @@ const Index = () => {
             style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
           />
         </div>
-        <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
-        <label htmlFor="category" style={{ paddingRight: '10px', marginTop: '10px', marginBottom: '10px' }}>Category</label>
-        <select
-          value={productCategory}
-          onChange={(e) => setProductCategory(e.target.value)}
-          style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
-        >
-          <option value="">Select a category...</option>
-          <option value="electronics">Electronics</option>
-          <option value="clothing">Clothing</option>
-          <option value="jewelery">Jewelery</option>
-          <option value="food">Food</option>
-          <option value="beauty">Beauty</option>
-        </select>
-      </div>
         <button type="submit" disabled={submitting} style={{marginTop: '50px', padding: '2px 20px 2px 20px', borderRadius: '5px'}}>
           {submitting ? <span>Submitting...</span> : <span>Submit</span>}
         </button>
