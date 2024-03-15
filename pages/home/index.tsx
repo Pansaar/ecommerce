@@ -5,6 +5,8 @@ import TopNav2 from '../../components/top-nav2';
 import axios from 'axios';
 import { productSlide } from '../api/homeImagesArray';
 import { useRouter } from 'next/router';
+import useProductIdStore from '../../store/products';
+import useAuthStore from '../../store/user-auth';
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -14,7 +16,8 @@ const Home = () => {
   const [moreProducts, setMoreProducts] = useState(-8)
   const [isFetching, setIsFetching] = useState(false)
   const router = useRouter()
-  const userParam = router.query.user;
+  const { productId, setProductId } = useProductIdStore()
+  const { authenticatedUser } = useAuthStore()
 
   function onMouseEnterApply(index) {
     if (index >= 0) {
@@ -81,7 +84,8 @@ const Home = () => {
       }
     }
     fetchProducts();
-  }, []);
+    console.log(productId)
+  }, [productId]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -102,8 +106,6 @@ const Home = () => {
   function toRightImage() {
     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % productSlide.length);
   }
-
-  
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
@@ -181,6 +183,12 @@ const Home = () => {
     }}
     onMouseEnter={() => onMouseEnterApply(index)}
     onMouseLeave={() => onMouseLeaveApply(index)}
+    onClick={() => {
+      const selectedProductId = product.id;
+      router.push(`productView?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`); 
+      setProductId(selectedProductId)
+  }}
+  
   >
     <img
       src={product.image}

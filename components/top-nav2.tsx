@@ -33,11 +33,11 @@ const TopNav2 = () => {
     <div style={{ position: 'sticky', top: '0', zIndex: '1' }}>
       <div className='d-flex' style={{ padding: "10px", backgroundColor: "white", boxShadow: "1px 1px 2px grey", justifyContent: "space-between" }}>
         <h1 className='align-items-center d-flex'>Ecomm</h1>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/category/electronics?${encodeURIComponent(authenticatedUser)}`)}>Electronics</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/category/clothing?${encodeURIComponent(authenticatedUser)}`)}>Clothing</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/category/jewelery?${encodeURIComponent(authenticatedUser)}`)}>Jewelry</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/category/food?${encodeURIComponent(authenticatedUser)}`)}>Food</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/category/beauty?${encodeURIComponent(authenticatedUser)}`)}>Beauty</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/electronics?${encodeURIComponent(authenticatedUser)}`)}>Electronics</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/clothing?${encodeURIComponent(authenticatedUser)}`)}>Clothing</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/jewelery?${encodeURIComponent(authenticatedUser)}`)}>Jewelry</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/food?${encodeURIComponent(authenticatedUser)}`)}>Food</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/beauty?${encodeURIComponent(authenticatedUser)}`)}>Beauty</p>
         <form onSubmit={handleSubmit} style={{ position: 'relative', display: 'inline-block' }}>
           <input
             disabled={isSearching}

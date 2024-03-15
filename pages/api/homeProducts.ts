@@ -3,10 +3,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const prisma = new PrismaClient();
 
-async function getBase64ImagesWithDetails(): Promise<{ name: string, price: number, image: string, amount: number }[]> {
+async function getBase64ImagesWithDetails(): Promise<{ id: string, name: string, price: number, image: string, amount: number }[]> {
   try {
     const products = await prisma.products.findMany({ 
       select: { 
+        id: true,
         name: true, 
         price: true, 
         amount: true,
