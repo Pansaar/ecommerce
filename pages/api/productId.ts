@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { productId: productIdParam } = req.query as { productId: string };
-  console.log(productIdParam)
 
   if (req.method === 'GET') {
     try {

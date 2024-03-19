@@ -16,7 +16,7 @@ const Index = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchElectronics = async () => {
+    const fetchJewelery = async () => {
       try {
         const response = await axios.get(`/api/fetchJewelery`);
         setShowProducts(response.data.reverse());
@@ -27,7 +27,7 @@ const Index = () => {
       }
     };
 
-    fetchElectronics();
+    fetchJewelery();
   }, []);
 
   const handleProductClick = (user, productId) => {
@@ -57,7 +57,7 @@ const Index = () => {
       <TopNav1 />
       <TopNav2 />
       <LeftNav />
-      {isLoading ? <p>Fetching products...</p> : null}
+      {isLoading ? <p>Fetching products...</p> :
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {showProducts.map((product, index) => (
           <div
@@ -77,11 +77,12 @@ const Index = () => {
           >
             <p>{product.name}</p>
             <img src={product.image} alt={product.name} style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }} />
-            <p>{product.description}</p>
-            <p>{product.price}</p>
+            <p style={{marginTop: '20px'}}>฿{product.price}</p>
+            <p>Remaining: {product.amount}</p>
           </div>
         ))}
       </div>
+      }
     </div>
   );
 };

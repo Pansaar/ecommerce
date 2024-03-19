@@ -19,6 +19,7 @@ const TopNav2 = () => {
       
       if (foundItem) {
         router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
+        setIsSearching(false)
       } else {
         setIsSearching(false)
         console.log('Search not found');
