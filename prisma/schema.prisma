@@ -14,25 +14,38 @@ datasource db {
 // schema.prisma
 
 model User {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  username   String   @unique
-  password   String
-  profilePic String
-  products   Products[]
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  username     String       @unique
+  password     String
+  profilePic   String
+  shoppingCart ShoppingCart? 
+  products     Products[]  
 }
 
 model Products {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
   name          String
   description   String
   price         Float
   image         String
-  seller        User     @relation(fields: [sellerId], references: [id])
-  sellerId      String   @map("_sellerId")
-  amount        Int    
-  updatedAt     DateTime @default(now())
+  seller        User         @relation(fields: [sellerId], references: [id])
+  sellerId      String       @map("_sellerId")
+  amount        Int
+  updatedAt     DateTime     @default(now())
   category      String
 }
+
+
+model ShoppingCart {
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  shopper       User?        @relation(fields: [shopperId], references: [id])
+  shopperId     String?      @map("_userId") @unique
+  cart          String[]   
+}
+
+
+
+
 
 
 
