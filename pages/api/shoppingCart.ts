@@ -6,10 +6,11 @@ const prisma = new PrismaClient();
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     if (req.method === 'POST') {
-      const { shopper, cart } = req.body;
+      const userParam = Array.isArray(req.query.user) ? req.query.user[0] : req.query.user;
+      const productIdParam = Array.isArray(req.query.productId) ? req.query.productId[0] : req.query.productId;
 
       const user = await prisma.user.findUnique({
-        where: { username: shopper },
+        where: { username: userParam },
         include: { shoppingCart: true }
       });
       
@@ -21,14 +22,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (!shoppingCart) {
         shoppingCart = await prisma.shoppingCart.create({
           data: {
-            shopper: { connect: { username: shopper } },
+            shopper: { connect: { username: userParam } },
             cart: []
           }
         });
       }
 
       const product = await prisma.products.findFirst({
-        where: { id: cart }
+        where: { id: productIdParam }
       });
 
       if (!product) {
@@ -39,7 +40,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         where: { id: shoppingCart.id },
         data: {
           cart: {
-            push: cart
+            push: productIdParam
           }
         },
       });

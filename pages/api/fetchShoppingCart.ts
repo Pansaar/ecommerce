@@ -36,7 +36,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     where: { id: productId }
                 });
             }));
-
             res.status(200).json(products);
         } catch (error) {
             console.error('Error fetching shopping cart:', error);

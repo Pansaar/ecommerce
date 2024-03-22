@@ -42,7 +42,7 @@ const Home = () => {
     try {
       const response = await axios.get(`/api/homeProducts`);
       const newProducts = response.data;
-      const fetchCount = Math.floor(products.length / 8);
+      const fetchCount = Math.ceil(products.length / 8);
       const updatedProducts = [...products, ...newProducts];
       const slicedProducts = updatedProducts.slice(0, fetchCount * 8);
       setProducts(slicedProducts);
@@ -53,7 +53,6 @@ const Home = () => {
       setIsFetching(false);
     }
   }
-  
   
 
   useEffect(() => {
