@@ -4,15 +4,12 @@ import { useRouter } from 'next/router';
 import TopNav1 from '../../components/top-nav1';
 import TopNav2 from '../../components/top-nav2';
 import LeftNav from '../../components/left-nav';
-import useAuthStore from '../../store/user-auth';
 
 const Index = () => {
   const router = useRouter();
   const userParam = router.query.user
   const [products, setProducts] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-
-  const { authenticatedUser } = useAuthStore()
 
   useEffect(() => {
     const fetchShoppingCart = async () => {
