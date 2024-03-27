@@ -166,9 +166,9 @@ const Index = () => {
         <button type="submit" disabled={submitting} style={{margin: '20px 10px 0px 0px', padding: '2px 20px 2px 20px', borderRadius: '5px'}}>
           {submitting ? <span>Submitting...</span> : <span>Submit</span>}
         </button>
-        <button style={{borderRadius: '5px', padding: '2px 20px 2px 20px', margin: '20px 0px 0px 0px'}} onClick={() => router.push(`/viewMyMerchant?user=${encodeURIComponent(userParam as string)}`)}>My Products</button>
         </div>
       </form>
+      <button style={{borderRadius: '5px', padding: '2px 20px 2px 20px', margin: '20px 0px 0px 0px'}} onClick={() => router.push(`/viewMyMerchant?user=${encodeURIComponent(userParam as string)}`)}>My Products</button>
       
       <div id = 'priceError' style={{
             display: 'none',

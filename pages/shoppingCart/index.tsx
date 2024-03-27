@@ -66,9 +66,9 @@ const Index = () => {
   return (
     <div>
       <TopNav1 />
-      <TopNav2 />
       <LeftNav />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+        <h3 style={{marginTop: '20px'}}>Shopping Cart</h3>
         {isFetching ? (
           <p>Fetching products...</p>
         ) : (
@@ -83,7 +83,7 @@ const Index = () => {
                   style={{
                     width: '20%',
                     flex: '0 0 auto',
-                    margin: '50px 20px 20px 20px',
+                    margin: '20px 20px 20px 20px',
                     cursor: 'pointer',
                     border: 'solid 1px lightGrey',
                     padding: '20px 20px 40px 20px',

@@ -1,7 +1,6 @@
 import React from 'react';
 import LeftNav from '../../components/left-nav';
 import TopNav1 from '../../components/top-nav1';
-import TopNav2 from '../../components/top-nav2';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -10,12 +9,14 @@ const Index = () => {
     const router = useRouter();
     const userParam = router.query.user;
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const response = await axios.get(`/api/fetchEditMyMerchant?user=${userParam}`);
                 setProducts(response.data);
+                setIsLoading(false)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -38,12 +39,13 @@ const Index = () => {
         }
       };
 
+
     return (
         <div>
             <TopNav1 />
-            <TopNav2 />
             <LeftNav />
-            <div>
+            {isLoading ? <p>Fetching products...</p>:
+            <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
                 {products.map((product, index) => (
                     <div
                         id={`prodContainer${index}`}
@@ -67,7 +69,7 @@ const Index = () => {
                         <p>{product.amount}</p>
                     </div>
                 ))}
-            </div>
+            </div>}
         </div>
     );
 };

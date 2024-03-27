@@ -54,23 +54,6 @@ const Index = () => {
     router.push(`productView?user=${encodeURIComponent(user)}&productId=${encodeURIComponent(productId)}`)
   }
 
-  async function loadMoreProducts() {
-    setIsFetching(true);
-    try {
-      const response = await axios.get(`/api/homeProducts`);
-      const newProducts = response.data;
-      const fetchCount = Math.floor(showProducts.length / 8);
-      const updatedProducts = [...showProducts, ...newProducts];
-      const slicedProducts = updatedProducts.slice(0, fetchCount * 8);
-      setShowProducts(slicedProducts);
-      setMoreProducts(prevMoreProducts => prevMoreProducts - 8);
-    } catch (error) {
-      console.error('Error fetching more products:', error);
-    } finally {
-      setIsFetching(false);
-    }
-  }
-
   return (
     <div>
       <TopNav1 />
@@ -87,14 +70,13 @@ const Index = () => {
           border: 'solid 1px lightGrey',
           padding: '20px 20px 40px 20px',
         }} onClick={() => productView(userParam, product.id)}>
-          <p>{product.name}</p>
           <img src={product.image} alt={product.name} style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }} />
-          <p style={{marginTop: '20px'}}>Price: ฿{product.price}</p>
+          <p style={{marginTop: '20px'}}>{product.name}</p>
+          <p>Price: ฿{product.price}</p>
           <p>Remaining: {product.amount}</p>
 
         </div>
       ))}
-      <h3 onClick={loadMoreProducts} style={{color: isFetching ? 'grey': '#800020', margin: 'auto', fontWeight: '200', padding: '20px 0px 40px 0px'}}>More Products</h3>
       </div>
       }
     </div>
