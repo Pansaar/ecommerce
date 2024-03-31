@@ -4,13 +4,9 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-
-    const userParam = Array.isArray(req.query.user) ? req.query.user[0] : req.query.user;
-
     if (req.method === 'GET') {
         try {
-            const user = req.query.user as string;
-
+            const user = Array.isArray(req.query.user) ? req.query.user[0] : req.query.user;
             const theUser = await prisma.user.findFirst({
                 where: { username: user },
                 select: {
@@ -26,47 +22,42 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 where: { shopperId: theUser.id },
                 select: {
                     shopper: true,
-                    cart: true
+                    cart: {
+                        include: {
+                            shoppingCart: true
+                        }
+                    }
                 }
             });
-
-            const shoppingCartId = await prisma.user.findFirst({
-                where:{
-                    username: userParam
-                }, select: {
-                    shoppingCart: true
-                }
-            })
 
             if (!userWithCart) {
                 return res.status(404).json({ error: 'Shopping cart not found for the user' });
             }
 
-            const existingProducts = await Promise.all(userWithCart.cart.map(async (productId) => {
-                const product = await prisma.products.findUnique({
-                    where: { id: productId }
-                });
-                return product ? productId : null;
+            const filteredCart = userWithCart.cart.map(item => ({
+                id: item.id,
+                prodAmount: item.prodAmount,
+                shoppingCartId: item.shoppingCart.id
             }));
 
-            const filteredCart = existingProducts.filter(Boolean);
-
-            await prisma.shoppingCart.update({
-                where: { id: shoppingCartId.shoppingCart.id },
-                data: {
-                    cart: filteredCart
+            const products = await Promise.all(filteredCart.map(async (item) => {
+                const cartItem = await prisma.cartItem.findUnique({
+                    where: { id: item.id },
+                    select: { productId: true }
+                });
+                if (cartItem) {
+                    const product = await prisma.products.findUnique({
+                        where: { id: cartItem.productId }
+                    });
+                    return product;
+                } else {
+                    return null;
                 }
-            });     
-
-            
-
-            const products = await Promise.all(filteredCart.map(async (productId) => {
-                return await prisma.products.findUnique({
-                    where: { id: productId }
-                });
             }));
-
-            res.status(200).json(products);
+        
+            const validProducts = products.filter(product => product !== null);
+            res.status(200).json(validProducts);
+            
         } catch (error) {
             console.error('Error fetching shopping cart:', error);
             res.status(500).json({ error: 'Internal server error' });

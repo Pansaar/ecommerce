@@ -14,7 +14,11 @@ const Index = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get(`/api/fetchEditMyMerchant?user=${userParam}`);
+                const response = await axios.get(`/api/fetchEditMyMerchant?user=${userParam}`, {
+                    data: {
+                        userParam
+                    }
+                })
                 setProducts(response.data);
                 setIsLoading(false)
             } catch (error) {

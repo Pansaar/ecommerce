@@ -4,25 +4,25 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const prisma = new PrismaClient();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const userParam = Array.isArray(req.query.user) ? req.query.user[0] : req.query.user;
-
     if (req.method === 'GET') {
         try {
-            if (!userParam) {
+            const user = Array.isArray(req.query.user) ? req.query.user[0] : req.query.user;
+            const { reqBodyProductId } = req.body
+            if (!user) {
                 return res.status(400).json({ error: 'Missing user parameter' });
             }
 
-            const user = await prisma.user.findFirst({
-                where: { username: userParam },
-                select: { id: true }
+            const userRecord = await prisma.user.findFirst({
+                where: { username: user },
+                select: { id: true },
             });
 
-            if (!user) {
+            if (!userRecord) {
                 return res.status(404).json({ error: 'User not found' });
             }
 
             const products = await prisma.products.findMany({
-                where: { sellerId: user.id }
+                where: { sellerId: userRecord.id },
             });
 
             res.status(200).json(products);

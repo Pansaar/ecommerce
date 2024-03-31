@@ -22,8 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const userWithCart = await prisma.shoppingCart.findFirst({
         where: { shopperId: theUser.id },
-        select: {
-          id: true,
+        include: {
           cart: true
         }
       });
@@ -32,11 +31,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ error: 'Shopping cart not found for the user' });
       }
 
-      const updatedCart = userWithCart.cart.filter(productId => productId !== productIdParam);
-
-      await prisma.shoppingCart.update({
-        where: { id: userWithCart.id },
-        data: { cart: updatedCart }
+      await prisma.cartItem.deleteMany({
+        where: {
+          productId: productIdParam,
+          shoppingCartId: userWithCart.id
+        }
       });
 
       return res.status(200).json({ message: 'Product removed successfully', productId: productIdParam });

@@ -30,7 +30,6 @@ const Login = () => {
       });
   
       if (response.status === 200) {
-        // Assuming the login was successful, set Zustand state
         setAuthenticated(true);
         setAuthenticatedUser(username);
   
@@ -39,7 +38,6 @@ const Login = () => {
         setErrorMessage('');
         setLoading(false);
   
-        // Use the callback to ensure the state is updated before navigation
         router.push(`/home?user=${encodeURIComponent(username)}`, undefined, { shallow: true });
       } else {
         setErrorMessage('Unexpected error occurred. Please try again.');

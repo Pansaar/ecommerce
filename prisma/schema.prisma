@@ -31,20 +31,21 @@ model Products {
   amount        Int
   updatedAt     DateTime     @default(now())
   category      String
+  cartItems     CartItem[]
 }
-
 
 model ShoppingCart {
   id            String       @id @default(auto()) @map("_id") @db.ObjectId
   shopper       User?        @relation(fields: [shopperId], references: [id])
   shopperId     String?      @map("_userId") @unique
-  cart          String[]   
+  cart          CartItem[]   
 }
 
-
-
-
-
-
-
-
+model CartItem {
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  prodAmount      Int
+  product         Products?   @relation(fields: [productId], references: [id])
+  productId       String
+  shoppingCart    ShoppingCart? @relation(fields: [shoppingCartId], references: [id])
+  shoppingCartId  String
+}

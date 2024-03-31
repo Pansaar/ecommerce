@@ -38,8 +38,6 @@ useEffect(() => {
   fetchData();
 }, [userParam, setIsProfile]);
 
-// Inside the handleSubmit function
-
 const handleSubmit = async (event) => {
   event.preventDefault();
   setSubmitting(true);

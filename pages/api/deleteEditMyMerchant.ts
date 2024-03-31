@@ -13,12 +13,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             const userProfile = await prisma.user.findFirst({
                 where: { username: userParam }
             });
-
+    
             if (userProfile) {
+                // Delete associated cart items first
+                await prisma.cartItem.deleteMany({
+                    where: { productId: productIdParam }
+                });
+    
+                // Then delete the product
                 const deletedProduct = await prisma.products.delete({
                     where: { id: productIdParam }
                 });
-
+    
                 res.status(200).json({ message: 'Product deleted successfully', deletedProduct });
             } else {
                 res.status(404).json({ error: 'User not found' });
@@ -27,7 +33,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.error('Error deleting product:', error);
             res.status(500).json({ error: 'Internal server error' });
         }
-    } else {
-        res.status(405).json({ error: 'Method Not Allowed' });
     }
 }

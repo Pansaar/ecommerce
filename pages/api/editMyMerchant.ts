@@ -11,8 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const productIdParam = req.query.productId.toString();
       const priceFloat = parseFloat(price);
       const amountFloat = parseFloat(amount)
-
-      // Find the user
+      
       const user = await prisma.user.findFirst({
         where: { username: userParam as string },
       });
@@ -21,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ error: 'User not found' });
       }
 
-      // Update the product
+
       const updatedProduct = await prisma.products.update({
         where: { id: productIdParam },
         data: {

@@ -18,6 +18,7 @@ const Home = () => {
   const router = useRouter()
   const { productId, setProductId } = useProductIdStore()
   const { authenticatedUser } = useAuthStore()
+  const userParam = router.query.user
 
   function onMouseEnterApply(index) {
     if (index >= 0) {
@@ -83,7 +84,6 @@ const Home = () => {
       }
     }
     fetchProducts();
-    console.log(productId)
   }, [productId]);
 
   useEffect(() => {
@@ -182,12 +182,27 @@ const Home = () => {
     }}
     onMouseEnter={() => onMouseEnterApply(index)}
     onMouseLeave={() => onMouseLeaveApply(index)}
-    onClick={() => {
+    onClick={async () => {
       const selectedProductId = product.id;
-      router.push(`productView?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`); 
-      setProductId(selectedProductId)
-  }}
-  
+      if (selectedProductId) {
+        try {
+          const response = await axios.get(`/api/fetchSellerId?user=${userParam}&productId=${selectedProductId}`);
+          const browsingUser = response.data.user;
+          const sellerId = response.data.sellerId;
+          if (sellerId === browsingUser) {
+            router.push(`/editMyMerchant?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`);
+          } else {
+            router.push(`/productView?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`);
+          }
+        } catch (error) {
+          console.error('Error handling click:', error);
+        }
+      } else {
+        router.push(`/productView?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`);
+      }
+      setProductId(selectedProductId);
+    }}
+    
   >
     <img
       src={product.image}

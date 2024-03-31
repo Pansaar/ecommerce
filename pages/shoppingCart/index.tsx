@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import TopNav1 from '../../components/top-nav1';
-import TopNav2 from '../../components/top-nav2';
 import LeftNav from '../../components/left-nav';
 
 const Index = () => {
@@ -13,8 +12,9 @@ const Index = () => {
 
   useEffect(() => {
     const fetchShoppingCart = async () => {
+      if (!userParam) return;
       try {
-        const response = await axios.get(`/api/fetchShoppingCart?user=${userParam}`);
+        const response = await axios.get(`/api/fetchShoppingCart?user=${encodeURIComponent(userParam as string)}`);
         setProducts(response.data);
         setIsFetching(false);
       } catch (error) {
@@ -28,7 +28,7 @@ const Index = () => {
 
   const deleteShoppingCartProduct = async (productId) => {
     try {
-      await axios.delete(`/api/deleteShoppingCart?user=${userParam}&productId=${productId}`) 
+      await axios.delete(`/api/deleteShoppingCart?user=${encodeURIComponent(userParam as string)}&productId=${productId}`)
       setProducts(prevProducts => prevProducts.filter(product => product.id !== productId));
     } catch (error) {
       console.error('Error deleting product:', error);
