@@ -41,19 +41,24 @@ const Home = () => {
   async function loadMoreProducts() {
     setIsFetching(true);
     try {
-      const response = await axios.get(`/api/homeProducts`);
-      const newProducts = response.data;
-      const fetchCount = Math.ceil(products.length / 8);
-      const updatedProducts = [...products, ...newProducts];
-      const slicedProducts = updatedProducts.slice(0, fetchCount * 8);
-      setProducts(slicedProducts);
-      setMoreProducts(prevMoreProducts => prevMoreProducts - 8);
+        const response = await axios.get(`/api/homeProducts`);
+        const newProducts = response.data;
+        if (products.length < 8) {
+            console.log('Fetching terminated');
+        } else if (products.length >= 8) {
+            const updatedProducts = [...products.slice(0, -products.length-1), ...newProducts];
+            const fetchCount = Math.ceil(updatedProducts.length / 8);
+            const slicedProducts = updatedProducts.slice(0, fetchCount * 8);
+            setProducts(slicedProducts);
+            setMoreProducts(prevMoreProducts => prevMoreProducts - 8);
+        }
     } catch (error) {
-      console.error('Error fetching more products:', error);
+        console.error('Error fetching more products:', error);
     } finally {
-      setIsFetching(false);
+        setIsFetching(false);
     }
-  }
+}
+
   
 
   useEffect(() => {
@@ -210,8 +215,8 @@ const Home = () => {
       id={`prodImages${index}`}
     />
     <p style={{ marginTop: '40px' }}>{product.name}</p>
-    <p>Price: {product.price} THB</p>
-    <p>Amount: {product.amount}</p>
+    <p>{product.price} THB</p>
+    <p>Remaining: {product.amount}</p>
   </div>
 ))}
           </div>

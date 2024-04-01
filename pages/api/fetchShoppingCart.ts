@@ -54,9 +54,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     return null;
                 }
             }));
-        
+
+            const cartItemAmount = await prisma.cartItem.findMany({
+                where: {
+                    productId: { in: products.map(p => p.id) }
+                }, select: {
+                    prodAmount: true
+                }
+            });
+            
             const validProducts = products.filter(product => product !== null);
-            res.status(200).json(validProducts);
+            res.status(200).json({ products: validProducts, cartItemAmount });
             
         } catch (error) {
             console.error('Error fetching shopping cart:', error);

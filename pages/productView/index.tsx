@@ -4,7 +4,6 @@ import TopNav1 from '../../components/top-nav1';
 import { useRouter } from 'next/router';
 import TopNav2 from '../../components/top-nav2';
 import LeftNav from '../../components/left-nav';
-import shoppingCartStateStore from '../../store/shopping-cart';
 
 const Index = () => {
     const router = useRouter()
@@ -38,8 +37,10 @@ const Index = () => {
         event.preventDefault();
         
         const amount = parseInt(event.target.elements.amount.value); 
-        if (isNaN(amount) || amount <= 0) {
+        if (isNaN(amount) || amount <= 0 || amount > products.amount) {
             console.error('Invalid amount');
+            setIsAmountSubmitted(false)
+            document.getElementById('amountError').style.display = 'flex'
             return;
         }
         try {
@@ -98,13 +99,14 @@ const Index = () => {
                     <p style={{ color: 'white', textAlign: 'center', margin: '20px' }}>Purchase<br />{products.price} THB</p>
                     </div>
                     </div>
-                    <div id='prodAmount' style={{ display: 'none', position: 'fixed', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', width: '300px', height: '200px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                    <form onSubmit={addToCart} style={{ width: '100%', textAlign: 'center' }}>
-                        <input name="amount" placeholder="Enter quantity" type="number" required disabled={isAmountSubmitted} style={{ marginBottom: '10px', width: '80%', padding: '10px' }} />
-                        <button type="submit" disabled={isAmountSubmitted} style={{ width: '80%', padding: '10px', backgroundColor: '#800020', color: 'white', border: 'none', borderRadius: '5px' }}>
-                            {isAmountSubmitted ? 'Adding to cart...' : 'Add to cart'}
-                        </button>
-                    </form>
+                    <div id='prodAmount' style={{ display: 'none', position: 'fixed', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', width: '300px', height: '200px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: '2px 2px 5px grey'}}>
+                            <form onSubmit={addToCart} style={{ width: '100%', textAlign: 'center' }}>
+                                <input name="amount" placeholder="Enter quantity" type="number" required disabled={isAmountSubmitted} style={{ marginBottom: '10px', width: '80%', padding: '10px' }} />
+                                <p id='amountError' style={{color: 'red', display: 'none', marginLeft: '10%'}}>Invalid amount</p>
+                                <button type="submit" disabled={isAmountSubmitted} style={{ width: '80%', padding: '10px', backgroundColor: '#800020', color: 'white', border: 'none', borderRadius: '5px' }}>
+                                    {isAmountSubmitted ? 'Adding to cart...' : 'Add to cart'}
+                                </button>
+                            </form>
                 </div>                
                 </div>
                 

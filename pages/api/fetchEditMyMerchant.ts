@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'GET') {
         try {
             const user = Array.isArray(req.query.user) ? req.query.user[0] : req.query.user;
-            const { reqBodyProductId } = req.body
             if (!user) {
                 return res.status(400).json({ error: 'Missing user parameter' });
             }
