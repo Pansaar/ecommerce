@@ -69,8 +69,8 @@ const Index = () => {
                     >
                         <img src={product.image} style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }} />
                         <p style={{ marginTop: '40px' }}>{product.name}</p>
-                        <p>{product.price}</p>
-                        <p>{product.amount}</p>
+                        <p>{product.price} THB</p>
+                        <p>Amount: {product.amount}</p>
                     </div>
                 ))}
             </div>}

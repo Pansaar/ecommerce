@@ -27,7 +27,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           category,
           price: priceFloat,
           description,
-          amount: amountFloat
+          amount: amountFloat,
+          updatedAt: new Date()
         },
       });
 

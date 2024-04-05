@@ -60,7 +60,7 @@ const Index = () => {
       <TopNav2 />
       <LeftNav />
       {isLoading ? <p>Fetching products...</p>:
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%'}}>
       {showProducts.slice(moreProducts).reverse().map((product, index) => (
         <div id = {`prodContainer${index}`} key={index} onMouseEnter={() => applyMouseEnter(index)} onMouseLeave={() => applyMouseLeave(index)} style={{
           width: '20%',
@@ -71,7 +71,7 @@ const Index = () => {
           padding: '20px 20px 40px 20px',
         }} onClick={() => productView(userParam, product.id)}>
           <img src={product.image} alt={product.name} style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }} />
-          <p style={{marginTop: '20px'}}>{product.name}</p>
+          <p style={{marginTop: '40px'}}>{product.name}</p>
           <p>Price: ฿{product.price}</p>
           <p>Remaining: {product.amount}</p>
 

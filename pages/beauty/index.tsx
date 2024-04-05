@@ -58,7 +58,7 @@ const Index = () => {
       <TopNav2 />
       <LeftNav />
       {isLoading ? <p>Fetching products...</p> : 
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%'}}>
         {showProducts.map((product, index) => (
           <div
             key={index}
@@ -75,9 +75,9 @@ const Index = () => {
               backgroundColor: product.isHovered ? 'lightGrey' : 'white',
             }}
           >
-            <p>{product.name}</p>
             <img src={product.image} alt={product.name} style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }} />
-            <p style={{marginTop: '20px'}}>฿{product.price}</p>
+            <p style={{marginTop: '40px'}}>{product.name}</p>
+            <p>฿{product.price}</p>
             <p>Remaining: {product.amount}</p>
           </div>
         ))}
