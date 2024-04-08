@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-08T12:11:04.975424" rpa="false" schemaversion="5">
+<suite id="s1" name="fetchSellerId" source="C:\nextjs-practice\ecommerce\tests\fetchSellerId\fetchSellerId.robot">
+<test id="s1-t1" name="Test Fetch Seller ID Successfully" line="11">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:11:05.258313" level="INFO">Creating Session using : alias=sellerIdSession, url=http://localhost:3000/api/fetchSellerId, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>sellerIdSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T12:11:05.257306" elapsed="0.001007"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:11:10.238123" level="INFO">GET Request : url=http://localhost:3000/api/fetchSellerId/?user=pansaar1553 (redirected) 
+ path_url=/api/fetchSellerId/?user=pansaar1553 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T12:11:10.239135" level="INFO">GET Response : url=http://localhost:3000/api/fetchSellerId?user=pansaar1553 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"edkrsv7dgj21"', 'Content-Length': '73', 'Vary': 'Accept-Encoding', 'Date': 'Mon, 08 Apr 2024 05:11:10 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"sellerId":"65fc5f70bc551c42d4949f0f","user":"65fc5f70bc551c42d4949f0f"} 
+ </msg>
+<msg time="2024-04-08T12:11:10.240134" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>sellerIdSession</arg>
+<arg>/</arg>
+<arg>params=user=pansaar1553</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-04-08T12:11:05.259312" elapsed="4.980822"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T12:11:10.243123" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T12:11:10.242125" elapsed="0.001998"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T12:11:10.246123" level="INFO">${response_body} = {"sellerId":"65fc5f70bc551c42d4949f0f","user":"65fc5f70bc551c42d4949f0f"}</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T12:11:10.244123" elapsed="0.002000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>user</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:11:10.247121" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching profile picture successfully when user exists</doc>
+<status status="PASS" start="2024-04-08T12:11:05.256309" elapsed="4.991811"/>
+</test>
+<test id="s1-t2" name="Test Fetch Seller ID Not Found" line="19">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:11:10.253122" level="INFO">Creating Session using : alias=sellerIdSession, url=http://localhost:3000/api/fetchSellerId, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>sellerIdSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T12:11:10.252122" elapsed="0.002004"/>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2024-04-08T12:11:10.255135" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2024-04-08T12:11:10.575130" level="INFO">GET Request : url=http://localhost:3000/api/fetchSellerId/?user=nonexistentuser (redirected) 
+ path_url=/api/fetchSellerId/?user=nonexistentuser 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T12:11:10.575130" level="INFO">GET Response : url=http://localhost:3000/api/fetchSellerId?user=nonexistentuser 
+ status=404, reason=Not Found 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"8owuzcgy1nq"', 'Content-Length': '26', 'Vary': 'Accept-Encoding', 'Date': 'Mon, 08 Apr 2024 05:11:10 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"error":"User not found"} 
+ </msg>
+<msg time="2024-04-08T12:11:10.576129" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<var>${response}</var>
+<arg>sellerIdSession</arg>
+<arg>/</arg>
+<arg>params=user=nonexistentuser</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="PASS" start="2024-04-08T12:11:10.255135" elapsed="0.320994"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T12:11:10.582138" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T12:11:10.579129" elapsed="0.004009"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T12:11:10.585123" level="INFO">${response_body} = {"error":"User not found"}</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T12:11:10.584122" elapsed="0.001001"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>User not found</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:11:10.587123" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching profile picture when user is not found</doc>
+<status status="PASS" start="2024-04-08T12:11:10.250121" elapsed="0.338005"/>
+</test>
+<status status="PASS" start="2024-04-08T12:11:04.981433" elapsed="5.611688"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="fetchSellerId">fetchSellerId</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-04-08T12:11:10.255135" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+</errors>
+</robot>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-08T12:04:29.886902" rpa="false" schemaversion="5">
+<suite id="s1" name="fetchElectronics" source="C:\nextjs-practice\ecommerce\tests\fetchElectronics\fetchElectronics.robot">
+<test id="s1-t1" name="Test Fetch Product Amount Successfully" line="10">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:04:30.105901" level="INFO">Creating Session using : alias=electronicsSession, url=http://localhost:3000/api/fetchElectronics, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>electronicsSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T12:04:30.105901" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:04:35.223787" level="INFO">GET Request : url=http://localhost:3000/api/fetchElectronics/ (redirected) 
+ path_url=/api/fetchElectronics/ 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T12:04:35.224786" level="INFO">GET Response : url=http://localhost:3000/api/fetchElectronics 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"12l17vpr0fvoavw"', 'Vary': 'Accept-Encoding', 'Content-Encoding': 'gzip', 'Date': 'Mon, 08 Apr 2024 05:04:35 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5', 'Transfer-Encoding': 'chunked'} 
+ body=[{"id":"6606b9df664a25bf24e5f83f","name":"Iphone","description":"Rose gold is goated!","price":25000,"image":"data:image/png;base64,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... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2024-04-08T12:04:35.225794" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>electronicsSession</arg>
+<arg>/</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-04-08T12:04:30.105901" elapsed="5.119893"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T12:04:35.227795" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T12:04:35.226795" elapsed="0.001000"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T12:04:35.229795" level="INFO">${response_body} = [{"id":"6606b9df664a25bf24e5f83f","name":"Iphone","description":"Rose gold is goated!","price":25000,"image":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLAAAAJ2CAIAAADAIuwLAAiW1UlEQVR42uy9CYxl6XXf...</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T12:04:35.227795" elapsed="0.002000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>id</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:04:35.230793" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>name</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:04:35.231794" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>description</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:04:35.231794" elapsed="0.001000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>price</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:04:35.232794" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>image</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:04:35.233793" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching product amount successfully when user exists</doc>
+<status status="PASS" start="2024-04-08T12:04:30.103902" elapsed="5.130891"/>
+</test>
+<status status="PASS" start="2024-04-08T12:04:29.889919" elapsed="5.346870"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="fetchElectronics">fetchElectronics</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "tasks": [
+        {
+            "label": "Run Robot Framework Tests",
+            "type": "shell",
+            "command": "robot",
+            "args": [
+                "${workspaceFolder}/tests"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        }
+    ]
+}

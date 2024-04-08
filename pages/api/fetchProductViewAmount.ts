@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'GET') {
         try {
             const user = Array.isArray(req.query.user) ? req.query.user[0] : req.query.user;
-            const productIdParam = Array.isArray(req.query.productId) ? req.query.productId[0] : req.query.productId; // Corrected line
+            const productIdParam = Array.isArray(req.query.productId) ? req.query.productId[0] : req.query.productId;
             const theUser = await prisma.user.findFirst({
                 where: { username: user },
                 select: {
@@ -51,6 +51,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     prodAmount: true
                 }
             });
+
+            const product = await prisma.products.findFirst({
+                where: {
+                    id: productIdParam
+                }
+            })
+
+            if(!product) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
 
             return res.status(200).json({ message: 'Product updated successfully', cartItemAmount });
         } catch (error) {

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-08T12:06:53.862439" rpa="false" schemaversion="5">
+<suite id="s1" name="fetchProfilePic" source="C:\nextjs-practice\ecommerce\tests\fetchProfilePic\fetchProfilePic.robot">
+<test id="s1-t1" name="Test Fetch Profile Picture Successfully" line="11">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:06:54.042927" level="INFO">Creating Session using : alias=profilePicSession, url=http://localhost:3000/api/fetchProfilePic, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>profilePicSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T12:06:54.042927" elapsed="0.001001"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:06:54.989570" level="INFO">GET Request : url=http://localhost:3000/api/fetchProfilePic/?user=pansaar1553 (redirected) 
+ path_url=/api/fetchProfilePic/?user=pansaar1553 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T12:06:54.990570" level="INFO">GET Response : url=http://localhost:3000/api/fetchProfilePic?user=pansaar1553 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"gs944qcedk1tdy"', 'Vary': 'Accept-Encoding', 'Content-Encoding': 'gzip', 'Date': 'Mon, 08 Apr 2024 05:06:54 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5', 'Transfer-Encoding': 'chunked'} 
+ body={"message":"Profile picture fetched successfully","profilePic":"data:image/jpeg;base64,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... (set the log level to DEBUG or TRACE to see the full content) 
+ </msg>
+<msg time="2024-04-08T12:06:54.992568" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>profilePicSession</arg>
+<arg>/</arg>
+<arg>params=user=pansaar1553</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-04-08T12:06:54.043928" elapsed="0.948640"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T12:06:54.999575" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T12:06:54.995569" elapsed="0.005002"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T12:06:55.004613" level="INFO">${response_body} = {"message":"Profile picture fetched successfully","profilePic":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QDoRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAADZAAAAcAAAAEMDIyMZAQA...</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T12:06:55.002566" elapsed="0.002047"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>message</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:06:55.006568" elapsed="0.001001"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>profilePic</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:06:55.009571" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching profile picture successfully when user exists</doc>
+<status status="PASS" start="2024-04-08T12:06:54.041926" elapsed="0.968638"/>
+</test>
+<test id="s1-t2" name="Test Fetch Profile Picture User Not Found" line="20">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T12:06:55.014564" level="INFO">Creating Session using : alias=profilePicSession, url=http://localhost:3000/api/fetchProfilePic, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>profilePicSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T12:06:55.014564" elapsed="0.001024"/>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2024-04-08T12:06:55.016564" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2024-04-08T12:06:55.335089" level="INFO">GET Request : url=http://localhost:3000/api/fetchProfilePic/?user=nonexistentuser (redirected) 
+ path_url=/api/fetchProfilePic/?user=nonexistentuser 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T12:06:55.335089" level="INFO">GET Response : url=http://localhost:3000/api/fetchProfilePic?user=nonexistentuser 
+ status=404, reason=Not Found 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"8owuzcgy1nq"', 'Content-Length': '26', 'Vary': 'Accept-Encoding', 'Date': 'Mon, 08 Apr 2024 05:06:55 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"error":"User not found"} 
+ </msg>
+<msg time="2024-04-08T12:06:55.335089" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<var>${response}</var>
+<arg>profilePicSession</arg>
+<arg>/</arg>
+<arg>params=user=nonexistentuser</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="PASS" start="2024-04-08T12:06:55.016564" elapsed="0.318525"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T12:06:55.336089" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T12:06:55.336089" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T12:06:55.337090" level="INFO">${response_body} = {"error":"User not found"}</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T12:06:55.337090" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>User not found</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T12:06:55.338090" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching profile picture when user is not found</doc>
+<status status="PASS" start="2024-04-08T12:06:55.013561" elapsed="0.324529"/>
+</test>
+<status status="PASS" start="2024-04-08T12:06:53.865439" elapsed="1.475650"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="fetchProfilePic">fetchProfilePic</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-04-08T12:06:55.016564" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+</errors>
+</robot>

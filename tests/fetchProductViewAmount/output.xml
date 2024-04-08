@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-08T11:19:24.993791" rpa="false" schemaversion="5">
+<suite id="s1" name="fetchProductViewAmount" source="C:\nextjs-practice\ecommerce\tests\fetchProductViewAmount\fetchProductViewAmount.robot">
+<test id="s1-t1" name="Test Fetch Product Amount Successfully" line="11">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:25.171811" level="INFO">Creating Session using : alias=productViewSession, url=http://localhost:3000/api/fetchProductViewAmount, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>productViewSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T11:19:25.171811" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:28.386565" level="INFO">GET Request : url=http://localhost:3000/api/fetchProductViewAmount/?productId=660ac95acfae37dc1491318a (redirected) 
+ path_url=/api/fetchProductViewAmount/?productId=660ac95acfae37dc1491318a 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T11:19:28.387562" level="INFO">GET Response : url=http://localhost:3000/api/fetchProductViewAmount?productId=660ac95acfae37dc1491318a 
+ status=200, reason=OK 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"n5lh00j9qr1s"', 'Content-Length': '64', 'Vary': 'Accept-Encoding', 'Date': 'Mon, 08 Apr 2024 04:19:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Product updated successfully","cartItemAmount":null} 
+ </msg>
+<msg time="2024-04-08T11:19:28.387562" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>productViewSession</arg>
+<arg>/</arg>
+<arg>params=user=pansaar1553</arg>
+<arg>params=productId=660ac95acfae37dc1491318a</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-04-08T11:19:25.172797" elapsed="3.214765"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T11:19:28.389566" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.388566" elapsed="0.001000"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T11:19:28.390564" level="INFO">${response_body} = {"message":"Product updated successfully","cartItemAmount":null}</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.390564" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>Product updated successfully</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.391562" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching product amount successfully when user exists</doc>
+<status status="PASS" start="2024-04-08T11:19:25.170792" elapsed="3.220770"/>
+</test>
+<test id="s1-t2" name="Test Fetch Product Amount User Not Found" line="19">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:28.397575" level="INFO">Creating Session using : alias=productViewSession, url=http://localhost:3000/api/fetchProductViewAmount, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>productViewSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T11:19:28.396569" elapsed="0.001994"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-04-08T11:19:28.399563" level="INFO">${params} = {'user': 'nonexistentuser', 'productId': '660ac95acfae37dc1491318a'}</msg>
+<var>${params}</var>
+<arg>{"user": "nonexistentuser", "productId": "660ac95acfae37dc1491318a"}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.399563" elapsed="0.000000"/>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:28.400569" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2024-04-08T11:19:28.717133" level="INFO">GET Request : url=http://localhost:3000/api/fetchProductViewAmount/?user=nonexistentuser&amp;productId=660ac95acfae37dc1491318a (redirected) 
+ path_url=/api/fetchProductViewAmount/?user=nonexistentuser&amp;productId=660ac95acfae37dc1491318a 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T11:19:28.717133" level="INFO">GET Response : url=http://localhost:3000/api/fetchProductViewAmount?user=nonexistentuser&amp;productId=660ac95acfae37dc1491318a 
+ status=404, reason=Not Found 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"8owuzcgy1nq"', 'Content-Length': '26', 'Vary': 'Accept-Encoding', 'Date': 'Mon, 08 Apr 2024 04:19:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"error":"User not found"} 
+ </msg>
+<msg time="2024-04-08T11:19:28.717133" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<var>${response}</var>
+<arg>productViewSession</arg>
+<arg>/</arg>
+<arg>params=${params}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.400569" elapsed="0.316564"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T11:19:28.719118" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.718133" elapsed="0.000985"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T11:19:28.720129" level="INFO">${response_body} = {"error":"User not found"}</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.719118" elapsed="0.001011"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>User not found</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.720129" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching product amount when user is not found</doc>
+<status status="PASS" start="2024-04-08T11:19:28.395567" elapsed="0.325544"/>
+</test>
+<test id="s1-t3" name="Test Fetch Product Amount Product Not Found" line="28">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:28.723577" level="INFO">Creating Session using : alias=productViewSession, url=http://localhost:3000/api/fetchProductViewAmount, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>productViewSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T11:19:28.722567" elapsed="0.001010"/>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:28.723577" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2024-04-08T11:19:31.120250" level="INFO">GET Request : url=http://localhost:3000/api/fetchProductViewAmount/?productId=660ac95acfae37dc1491318b (redirected) 
+ path_url=/api/fetchProductViewAmount/?productId=660ac95acfae37dc1491318b 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T11:19:31.120250" level="INFO">GET Response : url=http://localhost:3000/api/fetchProductViewAmount?productId=660ac95acfae37dc1491318b 
+ status=404, reason=Not Found 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"fnei5c4j57t"', 'Content-Length': '29', 'Vary': 'Accept-Encoding', 'Date': 'Mon, 08 Apr 2024 04:19:31 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"error":"Product not found"} 
+ </msg>
+<msg time="2024-04-08T11:19:31.120250" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<var>${response}</var>
+<arg>productViewSession</arg>
+<arg>/</arg>
+<arg>params=user=pansaar1553</arg>
+<arg>params=productId=660ac95acfae37dc1491318b</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="PASS" start="2024-04-08T11:19:28.723577" elapsed="2.396673"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T11:19:31.121229" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.121229" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T11:19:31.123228" level="INFO">${response_body} = {"error":"Product not found"}</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.122244" elapsed="0.000984"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>Product not found</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.123228" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching product amount when product is not found</doc>
+<status status="PASS" start="2024-04-08T11:19:28.722567" elapsed="2.401672"/>
+</test>
+<test id="s1-t4" name="Test Fetch Product Amount User and Product Not Found" line="36">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:31.126230" level="INFO">Creating Session using : alias=productViewSession, url=http://localhost:3000/api/fetchProductViewAmount, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>productViewSession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-04-08T11:19:31.126230" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2024-04-08T11:19:31.127245" level="INFO">${params} = {'user': 'nonexistentuser', 'productId': '660ac95acfae37dc1491318b'}</msg>
+<var>${params}</var>
+<arg>{"user": "nonexistentuser", "productId": "660ac95acfae37dc1491318b"}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.127245" elapsed="0.000000"/>
+</kw>
+<kw name="Get Request" owner="RequestsLibrary">
+<msg time="2024-04-08T11:19:31.128228" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2024-04-08T11:19:31.433763" level="INFO">GET Request : url=http://localhost:3000/api/fetchProductViewAmount/?user=nonexistentuser&amp;productId=660ac95acfae37dc1491318b (redirected) 
+ path_url=/api/fetchProductViewAmount/?user=nonexistentuser&amp;productId=660ac95acfae37dc1491318b 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-04-08T11:19:31.434763" level="INFO">GET Response : url=http://localhost:3000/api/fetchProductViewAmount?user=nonexistentuser&amp;productId=660ac95acfae37dc1491318b 
+ status=404, reason=Not Found 
+ headers={'Content-Type': 'application/json; charset=utf-8', 'ETag': '"8owuzcgy1nq"', 'Content-Length': '26', 'Vary': 'Accept-Encoding', 'Date': 'Mon, 08 Apr 2024 04:19:31 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"error":"User not found"} 
+ </msg>
+<msg time="2024-04-08T11:19:31.434763" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<var>${response}</var>
+<arg>productViewSession</arg>
+<arg>/</arg>
+<arg>params=${params}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.128228" elapsed="0.306535"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-04-08T11:19:31.439717" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.437720" elapsed="0.001997"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-04-08T11:19:31.443713" level="INFO">${response_body} = {"error":"User not found"}</msg>
+<var>${response_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.441719" elapsed="0.001994"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${response_body}</arg>
+<arg>User not found</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-04-08T11:19:31.445720" elapsed="0.000000"/>
+</kw>
+<doc>Test fetching product amount when user and product are not found</doc>
+<status status="PASS" start="2024-04-08T11:19:31.125233" elapsed="0.322484"/>
+</test>
+<status status="PASS" start="2024-04-08T11:19:24.996790" elapsed="6.457932"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="fetchProductViewAmount">fetchProductViewAmount</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-04-08T11:19:28.400569" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2024-04-08T11:19:28.723577" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg time="2024-04-08T11:19:31.128228" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+</errors>
+</robot>
