@@ -13,42 +13,114 @@ const TopNav2 = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
+      if(window.location.pathname === '/home') {
       const response = await axios.get(`/api/homeProducts?user=${userParam}`);
       const foundItem = response.data.find(item => item.name.toLowerCase().includes(search.toLowerCase()));
-      
       if (foundItem) {
         router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
         setIsSearching(false)
-      } else {
+      } else if(!foundItem) {
         setIsSearching(false)
         console.log('Search not found');
+      } else {
+        console.error('Error fetching data');
       }
-    } catch (error) {
-      console.error('Error fetching data:', error);
+      } else if(window.location.pathname === '/searchProduct') {
+        const response = await axios.get(`/api/homeProducts?user=${userParam}`);
+        const foundItem = response.data.find(item => item.name.toLowerCase().includes(search.toLowerCase()));
+        if (foundItem) {
+          router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
+          setIsSearching(false)
+        } else if(!foundItem) {
+          setIsSearching(false)
+          console.log('Search not found');
+        } else {
+          console.error('Error fetching data');
+        }
+        } else if(window.location.pathname === '/electronics') {
+      const response = await axios.get(`/api/fetchElectronics?user=${userParam}`);
+      const foundItem = response.data.find(item => item.name.toLowerCase().includes(search.toLowerCase()));
+      if (foundItem) {
+        router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
+        setIsSearching(false)
+      } else if(!foundItem) {
+        setIsSearching(false)
+        console.log('Search not found');
+      } else {
+        console.error('Error fetching data');
+      }
+      } else if(window.location.pathname === '/clothing') {
+        const response = await axios.get(`/api/fetchClothing?user=${userParam}`);
+        const foundItem = response.data.find(item => item.name.toLowerCase().includes(search.toLowerCase()));
+        if (foundItem) {
+          router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
+          setIsSearching(false)
+        } else if(!foundItem) {
+          setIsSearching(false)
+          console.log('Search not found');
+        } else {
+          console.error('Error fetching data');
+        }
+      } else if(window.location.pathname === '/') {
+        const response = await axios.get(`/api/fetchJewelery?user=${userParam}`);
+        const foundItem = response.data.find(item => item.name.toLowerCase().includes(search.toLowerCase()));
+        if (foundItem) {
+          router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
+          setIsSearching(false)
+        } else if(!foundItem) {
+          setIsSearching(false)
+          console.log('Search not found');
+        } else {
+          console.error('Error fetching data');
+        }
+      } else if(window.location.pathname === '/fetchFood') {
+        const response = await axios.get(`/api/fetchJewelery?user=${userParam}`);
+        const foundItem = response.data.find(item => item.name.toLowerCase().includes(search.toLowerCase()));
+        if (foundItem) {
+          router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
+          setIsSearching(false)
+        } else if(!foundItem) {
+          setIsSearching(false)
+          console.log('Search not found');
+        } else {
+          console.error('Error fetching data');
+        }
+      } else if(window.location.pathname === '/fetchBeauty') {
+        const response = await axios.get(`/api/fetchBeauty?user=${userParam}`);
+        const foundItem = response.data.find(item => item.name.toLowerCase().includes(search.toLowerCase()));
+        if (foundItem) {
+          router.push(`/searchProduct?user=${encodeURIComponent(authenticatedUser)}&result=${encodeURIComponent(search)}`, undefined, { shallow: true })
+          setIsSearching(false)
+        } else if(!foundItem) {
+          setIsSearching(false)
+          console.log('Search not found');
+        } else {
+          console.error('Error fetching data');
+        }
     }
-  };  
-
-
+  }
   return (
     <div style={{ position: 'sticky', top: '0', zIndex: '1' }}>
       <div className='d-flex' style={{ padding: "10px", backgroundColor: "white", boxShadow: "1px 1px 2px grey", justifyContent: "space-between" }}>
         <h1 className='align-items-center d-flex'>Ecomm</h1>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/electronics?${encodeURIComponent(authenticatedUser)}`)}>Electronics</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/clothing?${encodeURIComponent(authenticatedUser)}`)}>Clothing</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/jewelery?${encodeURIComponent(authenticatedUser)}`)}>Jewelry</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/food?${encodeURIComponent(authenticatedUser)}`)}>Food</p>
-        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/beauty?${encodeURIComponent(authenticatedUser)}`)}>Beauty</p>
+        <p id='electronics' className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/electronics?user=${encodeURIComponent(authenticatedUser)}`)}>Electronics</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/clothing?user=${encodeURIComponent(authenticatedUser)}`)}>Clothing</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/jewelery?user=${encodeURIComponent(authenticatedUser)}`)}>Jewelry</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/food?user=${encodeURIComponent(authenticatedUser)}`)}>Food</p>
+        <p className='align-items-center d-flex mt-3' style={{ cursor: "pointer" }} onClick={() => router.push(`/beauty?user=${encodeURIComponent(authenticatedUser)}`)}>Beauty</p>
         <form onSubmit={handleSubmit} style={{ position: 'relative', display: 'inline-block' }}>
           <input
+          id='browseProducts'
             disabled={isSearching}
             placeholder='Browse Products'
             className='mt-3'
             style={{ width: '300px', height: '30px', padding: '2px 30px 2px 5px' }}
             onChange={(e) => setSearch(e.target.value)}
             value={search}
+            maxLength={32}
           />
           <button
+            id="search"
             type="submit"
             onClick={() => setIsSearching(true)}
             style={{ position: 'absolute', right: '0px', height: '30px', width: '40px', padding: '2px 10px', cursor: 'pointer', top: '16px', border: '1px solid' }}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-09T19:16:42.174490" rpa="false" schemaversion="5">
+<suite id="s1" name="browseProducts" source="C:\nextjs-practice\ecommerce\tests\browseProducts\browseProducts.robot">
+<test id="s1-t1" name="Product Lazy Loading Success" line="17">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:16:42.603466" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/home?user=pansaar1553'.</msg>
+<arg>http://localhost:3000/home?user=pansaar1553</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-09T19:16:42.602468" elapsed="5.882079"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id=prodContainer0</arg>
+<arg>timeout=20s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-04-09T19:16:48.485552" elapsed="5.218533"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:16:53.705086" level="INFO">Clicking element 'id=moreProducts'.</msg>
+<msg time="2024-04-09T19:16:55.041713" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2024-04-09T19:16:55.042715" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (509, 1428)
+  (Session info: chrome=123.0.6312.106)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EF487072+63090]
+	(No symbol) [0x00007FF6EF3F2CC2]
+	(No symbol) [0x00007FF6EF28EC65]
+	(No symbol) [0x00007FF6EF2DBB34]
+	(No symbol) [0x00007FF6EF2D9954]
+	(No symbol) [0x00007FF6EF2D7164]
+	(No symbol) [0x00007FF6EF2D5EF9]
+	(No symbol) [0x00007FF6EF2CA708]
+	(No symbol) [0x00007FF6EF2F6FDA]
+	(No symbol) [0x00007FF6EF2CA00A]
+	(No symbol) [0x00007FF6EF2F71F0]
+	(No symbol) [0x00007FF6EF313412]
+	(No symbol) [0x00007FF6EF2F6D83]
+	(No symbol) [0x00007FF6EF2C83A8]
+	(No symbol) [0x00007FF6EF2C9441]
+	GetHandleVerifier [0x00007FF6EF8825CD+4238285]
+	GetHandleVerifier [0x00007FF6EF8BF72D+4488493]
+	GetHandleVerifier [0x00007FF6EF8B7A0F+4456463]
+	GetHandleVerifier [0x00007FF6EF5605B6+953270]
+	(No symbol) [0x00007FF6EF3FE58F]
+	(No symbol) [0x00007FF6EF3F9264]
+	(No symbol) [0x00007FF6EF3F939B]
+	(No symbol) [0x00007FF6EF3E9BD4]
+	BaseThreadInitThunk [0x00007FFF58127344+20]
+	RtlUserThreadStart [0x00007FFF58E226B1+33]
+</msg>
+<arg>id=moreProducts</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="FAIL" start="2024-04-09T19:16:53.705086" elapsed="1.342622">ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (509, 1428)
+  (Session info: chrome=123.0.6312.106)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EF487072+63090]
+	(No symbol) [0x00007FF6EF3F2CC2]
+	(No symbol) [0x00007FF6EF28EC65]
+	(No symbol) [0x00007FF6EF2DBB34]
+	(No symbol) [0x00007FF6EF2D9954]
+	(No symbol) [0x00007FF6EF2D7164]
+	(No symbol) [0x00007FF6EF2D5EF9]
+	(No symbol) [0x00007FF6EF2CA708]
+	(No symbol) [0x00007FF6EF2F6FDA]
+	(No symbol) [0x00007FF6EF2CA00A]
+	(No symbol) [0x00007FF6EF2F71F0]
+	(No symbol) [0x00007FF6EF313412]
+	(No symbol) [0x00007FF6EF2F6D83]
+	(No symbol) [0x00007FF6EF2C83A8]
+	(No symbol) [0x00007FF6EF2C9441]
+	GetHandleVerifier [0x00007FF6EF8825CD+4238285]
+	GetHandleVerifier [0x00007FF6EF8BF72D+4488493]
+	GetHandleVerifier [0x00007FF6EF8B7A0F+4456463]
+	GetHandleVerifier [0x00007FF6EF5605B6+953270]
+	(No symbol) [0x00007FF6EF3FE58F]
+	(No symbol) [0x00007FF6EF3F9264]
+	(No symbol) [0x00007FF6EF3F939B]
+	(No symbol) [0x00007FF6EF3E9BD4]
+	BaseThreadInitThunk [0x00007FFF58127344+20]
+	RtlUserThreadStart [0x00007FFF58E226B1+33]
+</status>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>10s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2024-04-09T19:16:55.048710" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2024-04-09T19:16:42.601460" elapsed="12.447250">ElementClickInterceptedException: Message: element click intercepted: Element is not clickable at point (509, 1428)
+  (Session info: chrome=123.0.6312.106)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6EF487072+63090]
+	(No symbol) [0x00007FF6EF3F2CC2]
+	(No symbol) [0x00007FF6EF28EC65]
+	(No symbol) [0x00007FF6EF2DBB34]
+	(No symbol) [0x00007FF6EF2D9954]
+	(No symbol) [0x00007FF6EF2D7164]
+	(No symbol) [0x00007FF6EF2D5EF9]
+	(No symbol) [0x00007FF6EF2CA708]
+	(No symbol) [0x00007FF6EF2F6FDA]
+	(No symbol) [0x00007FF6EF2CA00A]
+	(No symbol) [0x00007FF6EF2F71F0]
+	(No symbol) [0x00007FF6EF313412]
+	(No symbol) [0x00007FF6EF2F6D83]
+	(No symbol) [0x00007FF6EF2C83A8]
+	(No symbol) [0x00007FF6EF2C9441]
+	GetHandleVerifier [0x00007FF6EF8825CD+4238285]
+	GetHandleVerifier [0x00007FF6EF8BF72D+4488493]
+	GetHandleVerifier [0x00007FF6EF8B7A0F+4456463]
+	GetHandleVerifier [0x00007FF6EF5605B6+953270]
+	(No symbol) [0x00007FF6EF3FE58F]
+	(No symbol) [0x00007FF6EF3F9264]
+	(No symbol) [0x00007FF6EF3F939B]
+	(No symbol) [0x00007FF6EF3E9BD4]
+	BaseThreadInitThunk [0x00007FFF58127344+20]
+	RtlUserThreadStart [0x00007FFF58E226B1+33]
+</status>
+</test>
+<doc>Product search success</doc>
+<status status="FAIL" start="2024-04-09T19:16:42.178482" elapsed="12.877231"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="browseProducts">browseProducts</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

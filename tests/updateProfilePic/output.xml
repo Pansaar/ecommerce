@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-09T10:51:33.756102" rpa="false" schemaversion="5">
+<suite id="s1" name="updateProfilePic" source="C:\nextjs-practice\ecommerce\tests\updateProfilePic\updateProfilePic.robot">
+<test id="s1-t1" name="Change Profile Picture" line="5">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-09T10:51:34.280099" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/editProfilePic?user=pansaar1553'.</msg>
+<arg>http://localhost:3000/editProfilePic?user=pansaar1553</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-09T10:51:34.280099" elapsed="6.244445"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id=image</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-04-09T10:51:40.525543" elapsed="1.405998"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-04-09T10:51:41.933543" level="INFO">${file_path} = C:\Users\lenovoW10\Downloads\heatmap.jpg</msg>
+<var>${file_path}</var>
+<arg>C:\\Users\\lenovoW10\\Downloads\\heatmap.jpg</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-04-09T10:51:41.932544" elapsed="0.000999"/>
+</kw>
+<kw name="Choose File" owner="SeleniumLibrary">
+<msg time="2024-04-09T10:51:41.934543" level="INFO">Sending C:\Users\lenovoW10\Downloads\heatmap.jpg to browser.</msg>
+<arg>id=choosePic</arg>
+<arg>${file_path}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<status status="PASS" start="2024-04-09T10:51:41.934543" elapsed="0.089000"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-04-09T10:51:42.025542" level="INFO">Clicking button 'id=submit'.</msg>
+<arg>id=submit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T10:51:42.024545" elapsed="0.150997"/>
+</kw>
+<doc>Test changing profile picture via React component</doc>
+<tag>ui</tag>
+<status status="PASS" start="2024-04-09T10:51:34.278100" elapsed="7.898444"/>
+</test>
+<test id="s1-t2" name="Delete Profile Picture" line="14">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-09T10:51:42.181543" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/editProfilePic?user=pansaar1553'.</msg>
+<arg>http://localhost:3000/editProfilePic?user=pansaar1553</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-09T10:51:42.180543" elapsed="6.494415"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>id=image</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-04-09T10:51:48.675956" elapsed="6.554015"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-04-09T10:51:55.231969" level="INFO">Clicking button 'id=delete'.</msg>
+<arg>id=delete</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T10:51:55.230973" elapsed="0.153995"/>
+</kw>
+<doc>Test deleting profile picture via React component</doc>
+<tag>ui</tag>
+<status status="PASS" start="2024-04-09T10:51:42.179544" elapsed="13.206422"/>
+</test>
+<status status="PASS" start="2024-04-09T10:51:33.761106" elapsed="21.626861"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="2" fail="0" skip="0">ui</stat>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="updateProfilePic">updateProfilePic</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

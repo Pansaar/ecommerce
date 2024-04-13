@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-09T19:56:16.214843" rpa="false" schemaversion="5">
+<suite id="s1" name="myMerchant" source="C:\nextjs-practice\ecommerce\tests\myMerchant\myMerchant.robot">
+<test id="s1-t1" name="Input and Add MyMerchant Product Data" line="5">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:16.654857" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/myMerchant?user=pansaar1553'.</msg>
+<arg>http://localhost:3000/myMerchant?user=pansaar1553</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-09T19:56:16.653851" elapsed="5.349114"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-09T19:56:25.005817" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-09T19:56:22.004966" elapsed="3.001855"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-04-09T19:56:25.011843" level="INFO">${file_path} = C:\Users\lenovoW10\Downloads\poring1.png</msg>
+<var>${file_path}</var>
+<arg>C:\\Users\\lenovoW10\\Downloads\\poring1.png</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-04-09T19:56:25.009823" elapsed="0.002020"/>
+</kw>
+<kw name="Choose File" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:25.016817" level="INFO">Sending C:\Users\lenovoW10\Downloads\poring1.png to browser.</msg>
+<arg>id=uploadMyMerchant</arg>
+<arg>${file_path}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:25.014822" elapsed="0.143985"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-09T19:56:26.162760" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-09T19:56:25.160820" elapsed="1.001940"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.163373" level="INFO">Clicking element 'id=inputProdName'.</msg>
+<arg>id=inputProdName</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.163373" elapsed="0.114429"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.278806" level="INFO">Typing text 'test' into text field 'id=inputProdName'.</msg>
+<arg>id=inputProdName</arg>
+<arg>test</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.277802" elapsed="0.133054"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.411836" level="INFO">Clicking element 'id=inputSelectCategory'.</msg>
+<arg>id=inputSelectCategory</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.411836" elapsed="0.070027"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.482865" level="INFO">Clicking element 'id=electronics'.</msg>
+<arg>id=electronics</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.481863" elapsed="0.051921"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.535790" level="INFO">Clicking element 'id=inputPrice'.</msg>
+<arg>id=inputPrice</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.534785" elapsed="0.090498"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.627284" level="INFO">Typing text '100' into text field 'id=inputPrice'.</msg>
+<arg>id=inputPrice</arg>
+<arg>100</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.626282" elapsed="0.125536"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.752820" level="INFO">Clicking element 'id=inputAmount'.</msg>
+<arg>id=inputAmount</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.752820" elapsed="0.092201"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.847021" level="INFO">Typing text '10' into text field 'id=inputAmount'.</msg>
+<arg>id=inputAmount</arg>
+<arg>10</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.846041" elapsed="0.106980"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:26.954021" level="INFO">Clicking element 'id=inputDescription'.</msg>
+<arg>id=inputDescription</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:26.954021" elapsed="0.083727"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:27.038725" level="INFO">Typing text 'Tested with robot framework' into text field 'id=inputDescription'.</msg>
+<arg>id=inputDescription</arg>
+<arg>Tested with robot framework</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T19:56:27.038725" elapsed="0.161891"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-04-09T19:56:27.201624" level="INFO">Sending key(s) ('ENTER',) to id=submit element.</msg>
+<msg time="2024-04-09T19:56:27.539056" level="INFO">Pressing special key ENTER to element.</msg>
+<msg time="2024-04-09T19:56:27.540058" level="INFO">Releasing special key ENTER.</msg>
+<arg>id=submit</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-04-09T19:56:27.201624" elapsed="0.357425"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-09T19:56:42.561305" level="INFO">Slept 15 seconds.</msg>
+<arg>15s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-09T19:56:27.560046" elapsed="15.001259"/>
+</kw>
+<status status="PASS" start="2024-04-09T19:56:16.651848" elapsed="25.910460"/>
+</test>
+<status status="PASS" start="2024-04-09T19:56:16.218845" elapsed="26.345465"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="myMerchant">myMerchant</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

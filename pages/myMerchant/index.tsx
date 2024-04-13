@@ -99,11 +99,12 @@ const Index = () => {
           </div>
         )}
         </div>
-        <input type="file" accept="image/*" onChange={handleImageChange} style={{ margin: '20px 0px 20px 10px' }} />
+        <input id='uploadMyMerchant' type="file" accept="image/*" onChange={handleImageChange} style={{ margin: '20px 0px 20px 10px' }} />
         <div style={{ marginLeft: '10px'}}>
         <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px'}}>Product Name:</p>
           <input
+            id='inputProdName'
             type="text"
             placeholder="Enter product name"
             value={productName}
@@ -119,8 +120,8 @@ const Index = () => {
           onChange={(e) => setProductCategory(e.target.value)}
           style={{ border: 'none', outline: 'none', borderBottom: '1px solid lightgray' }}
         >
-          <option value="">Select a category...</option>
-          <option value="electronics">Electronics</option>
+          <option id='inputSelectCategory' value="">Select a category...</option>
+          <option id='electronics' value="electronics">Electronics</option>
           <option value="clothing">Clothing</option>
           <option value="jewelery">Jewelery</option>
           <option value="food">Food</option>
@@ -130,6 +131,7 @@ const Index = () => {
         <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px' }}>Price:</p>
           <input
+            id='inputPrice'
             type="number"
             placeholder="Enter Product Price"
             step="0.01" 
@@ -143,6 +145,7 @@ const Index = () => {
         <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px' }}>Amount:</p>
           <input
+            id='inputAmount'
             type="number"
             placeholder="Enter product amount"
             value={productAmount}
@@ -155,6 +158,7 @@ const Index = () => {
         <div className="input-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'white' }}>
           <p style={{ paddingRight: '10px', marginTop: '10px' }}>Description:</p>
           <input
+            id='inputDescription'
             type="text"
             placeholder="Enter product description"
             value={productDescription}
@@ -164,11 +168,11 @@ const Index = () => {
           />
         </div>
         <button type="submit" disabled={submitting} style={{margin: '20px 10px 0px 0px', padding: '2px 20px 2px 20px', borderRadius: '5px'}}>
-          {submitting ? <span>Submitting...</span> : <span>Submit</span>}
+          {submitting ? <span>Submitting...</span> : <span id='submit'>Submit</span>}
         </button>
         </div>
       </form>
-      <button style={{borderRadius: '5px', padding: '2px 20px 2px 20px', margin: '20px 0px 0px 0px'}} onClick={() => router.push(`/viewMyMerchant?user=${encodeURIComponent(userParam as string)}`)}>My Products</button>
+      <button style={{borderRadius: '5px', padding: '2px 20px 2px 20px', margin: '20px 0px 10px 10px'}} onClick={() => router.push(`/viewMyMerchant?user=${encodeURIComponent(userParam as string)}`)}>My Products</button>
       
       <div id = 'priceError' style={{
             display: 'none',

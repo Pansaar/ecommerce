@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-09T11:03:15.831521" rpa="false" schemaversion="5">
+<suite id="s1" name="Login" source="C:\nextjs-practice\ecommerce\tests\login\login.robot">
+<test id="s1-t1" name="Login Success" line="5">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:16.137514" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<arg>http://localhost:3000</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-09T11:03:16.137514" elapsed="5.161209"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:21.302721" level="INFO">Typing text 'pansaar1553' into text field 'id=username'.</msg>
+<arg>id=username</arg>
+<arg>pansaar1553</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T11:03:21.301719" elapsed="0.304002"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:21.607720" level="INFO">Typing text 'zachpansaar1553' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>zachpansaar1553</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T11:03:21.606717" elapsed="0.150045"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:21.757766" level="INFO">Clicking button 'id=submit'.</msg>
+<arg>id=submit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T11:03:21.757766" elapsed="0.115014"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-09T11:03:31.875237" level="INFO">Slept 10 seconds.</msg>
+<arg>10 seconds</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-09T11:03:21.873781" elapsed="10.001456"/>
+</kw>
+<kw name="Location Should Be" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:31.886219" level="INFO">Current location is 'http://localhost:3000/home?user=pansaar1553'.</msg>
+<arg>http://localhost:3000/home?user=pansaar1553</arg>
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<status status="PASS" start="2024-04-09T11:03:31.876220" elapsed="0.009999"/>
+</kw>
+<doc>Test logging in success</doc>
+<status status="PASS" start="2024-04-09T11:03:16.135513" elapsed="15.750706"/>
+</test>
+<test id="s1-t2" name="Login Failed" line="14">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:31.889224" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<arg>http://localhost:3000</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-09T11:03:31.889224" elapsed="4.939180"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:36.830406" level="INFO">Typing text 'nonexistentUser' into text field 'id=username'.</msg>
+<arg>id=username</arg>
+<arg>nonexistentUser</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T11:03:36.829424" elapsed="0.248173"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:37.079576" level="INFO">Typing text '123456789' into text field 'id=password'.</msg>
+<arg>id=password</arg>
+<arg>123456789</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T11:03:37.078573" elapsed="0.140000"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:37.220171" level="INFO">Clicking button 'id=submit'.</msg>
+<arg>id=submit</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T11:03:37.219573" elapsed="0.119000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-09T11:03:47.340513" level="INFO">Slept 10 seconds.</msg>
+<arg>10 seconds</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-09T11:03:37.339593" elapsed="10.000920"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:03:47.376556" level="INFO">Current page contains text 'Invalid username or password. Please try again.'.</msg>
+<arg>Invalid username or password. Please try again.</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-04-09T11:03:47.341519" elapsed="0.035037"/>
+</kw>
+<doc>Test logging in success</doc>
+<status status="PASS" start="2024-04-09T11:03:31.888219" elapsed="15.490320"/>
+</test>
+<status status="PASS" start="2024-04-09T11:03:15.833535" elapsed="31.547013"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="0" skip="0" id="s1" name="Login">Login</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

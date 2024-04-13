@@ -114,22 +114,25 @@ const handleSubmit = async (event) => {
       <title>Edit User Profile</title>
       <h1>Change Profile Picture</h1>
       <form onSubmit={handleSubmit}>
-        <input type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: '20px' }} />
+        <input id='choosePic' type="file" accept="image/*" onChange={handleImageChange} style={{ marginBottom: '20px' }} />
         {imagePreviewUrl && (
           <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative', boxShadow: '1px 1px 5px lightgrey', paddingBottom: '20px', marginBottom: '20px' }}>
             <h2>Preview:</h2>
             <img
+              id='image'
               src={imagePreviewUrl}
               alt="Selected"
               style={{ width: '300px', height: '300px', borderRadius: '50%', display: 'block', margin: 'auto' }}
             />
           </div>
         )}
-        <button type="submit" disabled={submitting}>
+        <button id='submit' type="submit" disabled={submitting}>
           {submitting ? <span>Submitting...</span> : <span>Submit</span>}
         </button>
+        <button id='delete' type='button' disabled={deleting} onClick={deletePic}>
+          {deleting ? <span>Deleting...</span> : <span>Delete</span>}
+        </button>
       </form>
-      <button disabled={deleting} onClick={deletePic}>{deleting ? <span>Deleting...</span>:<span>Delete</span>}</button>
     </div>
   );
 };

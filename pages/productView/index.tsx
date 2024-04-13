@@ -105,7 +105,7 @@ const Index = () => {
                     <div style={{backgroundColor: 'beige', border: 'solid 1px beige'}}>
                         <div style={{backgroundColor: 'white', paddingBottom: '10px'}}>
                             <p style={{color: '#800020', marginLeft: '10px', paddingTop: '10px'}}>฿<span style={{fontSize: '20px'}}>{products.price}</span></p>
-                            <p style={{marginLeft: '10px'}}>{products.name}</p>
+                            <p style={{marginLeft: '10px'}} id='prodName'>{products.name}</p>
                             <p style={{marginLeft: '10px'}}>Remaining: {products.amount}</p>
                         </div>
                         <div style={{padding: '10px 0px', backgroundColor: 'white', marginTop: '20px'}}>
@@ -125,18 +125,18 @@ const Index = () => {
                             </svg>
                             <div style={{ position: 'absolute', top: '5px', bottom: '5px', right: '0', width: '1px', backgroundColor: 'lightGrey' }}></div>
                         </div>
-                        <div style={{ position: 'relative', width: '25%', height: '100%', backgroundColor: '#FFFDD0', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => document.getElementById('prodAmount').style.display = 'flex'}>
+                        <div id='editAmount' style={{ position: 'relative', width: '25%', height: '100%', backgroundColor: '#FFFDD0', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => document.getElementById('prodAmount').style.display = 'flex'}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width={30} fill='#800020'>
                                 <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96zM252 160c0 11 9 20 20 20h44v44c0 11 9 20 20 20s20-9 20-20V180h44c11 0 20-9 20-20s-9-20-20-20H356V96c0-11-9-20-20-20s-20 9-20 20v44H272c-11 0-20 9-20 20z"/></svg>
                         </div>
-                        <div style={{ position: 'relative', width: '50%', height: '100%', backgroundColor: '#800020', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => { purchaseProduct(); document.getElementById('prodAmount').style.display = 'none'}}>
+                        <div id='purchase' style={{ position: 'relative', width: '50%', height: '100%', backgroundColor: '#800020', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={() => { purchaseProduct(); document.getElementById('prodAmount').style.display = 'none'}}>
                             <p style={{ color: 'white', textAlign: 'center', margin: '20px' }}>Purchase<br />{products.price * inputValue} THB</p>
                         </div>
                     </div>
                     <div id='prodAmount' style={{ display: 'flex', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', width: '300px', height: '200px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: '2px 2px 5px grey', textAlign: 'center', padding: '20px' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width={15} style={{ fill: 'grey', position: 'absolute', top: '15px', right: '15px', cursor: 'pointer' }} onClick={() => document.getElementById('prodAmount').style.display = 'none'}><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
                         <form onSubmit={addToCart} style={{ width: '100%' }}>
-                            <input name="amount" placeholder="Enter quantity" type="number" required onChange={handleInputChange} value={inputValue} disabled={isAmountSubmitted} style={{ marginBottom: '10px', width: '80%', padding: '10px' }} />
+                            <input name="amount" placeholder="Enter quantity" type="number" required onChange={handleInputChange} value={inputValue} disabled={isAmountSubmitted} style={{ marginBottom: '10px', width: '80%', padding: '10px' }} max={products.amount} min={0}/>
                             <p id='amountError' style={{ color: 'red', display: 'none', marginLeft: '10%' }}>Invalid amount</p>
                             <button type="submit" disabled={isAmountSubmitted} style={{ width: '80%', padding: '10px', backgroundColor: '#800020', color: 'white', border: 'none', borderRadius: '5px' }}>
                                 {isAmountSubmitted ? 'Adding to cart...' : 'Add to cart'}

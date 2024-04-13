@@ -6,13 +6,14 @@ import TopNav1 from '../../components/top-nav1';
 import TopNav2 from '../../components/top-nav2';
 import LeftNav from '../../components/left-nav';
 import useAuthStore from '../../store/user-auth';
+import useProductIdStore from '../../store/products';
 
 const Index = () => {
   const router = useRouter();
   const [showProducts, setShowProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { authenticatedUser } = useAuthStore();
-
+  const { productId, setProductId } = useProductIdStore()
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,10 +29,27 @@ const Index = () => {
     };
 
     fetchElectronics();
-  }, []);
+  }, [productId]);
 
-  const handleProductClick = (user, productId) => {
-    router.push(`productView?user=${encodeURIComponent(user)}&productId=${encodeURIComponent(productId)}`);
+  const handleProductClick = async (user, productId) => {
+    const selectedProductId = productId;
+      if (selectedProductId) {
+        try {
+          const response = await axios.get(`/api/fetchSellerId?user=${user}&productId=${selectedProductId}`);
+          const browsingUser = response.data.user;
+          const sellerId = response.data.sellerId;
+          if (sellerId === browsingUser) {
+            router.push(`/editMyMerchant?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`);
+          } else {
+            router.push(`/productView?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`);
+          }
+        } catch (error) {
+          console.error('Error handling click:', error);
+        }
+      } else {
+        router.push(`/productView?user=${encodeURIComponent(authenticatedUser)}&productId=${encodeURIComponent(selectedProductId)}`);
+      }
+      setProductId(selectedProductId);
   };
 
   const handleMouseEnter = (index) => {
@@ -62,6 +80,7 @@ const Index = () => {
         {showProducts.map((product, index) => (
           <div
             key={index}
+            id={`prodContainer${index}`}
             onClick={() => handleProductClick(authenticatedUser, product.id)}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}

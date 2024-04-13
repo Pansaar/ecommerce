@@ -73,6 +73,7 @@ const Login = () => {
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <input
         type="text"
+        id='username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         className='mb-1'
@@ -83,6 +84,7 @@ const Login = () => {
       />
       <input
         type="password"
+        id='password'
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         className='mb-3'
@@ -91,7 +93,7 @@ const Login = () => {
         placeholder='Password'
         maxLength={25}
       />
-      <button type="button" onClick={handleLogin} className='mb-3' disabled={submitted || loading}>
+      <button id='submit' type="button" onClick={handleLogin} className='mb-3' disabled={submitted || loading}>
         {loading ? 'Logging in...' : 'Login'}
       </button>
       <a onClick={toRegister} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ cursor: "pointer", textDecoration: isHovered ? "underline" : "none" }}>

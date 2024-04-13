@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.4 on win32)" generated="2024-04-09T11:33:22.160389" rpa="false" schemaversion="5">
+<suite id="s1" name="redirectToEditProfile" source="C:\nextjs-practice\ecommerce\tests\redirectToEditProfile\redirectToEditProfile.robot">
+<test id="s1-t1" name="Login Success" line="5">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:33:22.480388" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/profile?user=pansaar1553'.</msg>
+<arg>http://localhost:3000/profile?user=pansaar1553</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-04-09T11:33:22.479393" elapsed="4.812171"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:33:27.294566" level="INFO">Clicking element 'id=profilePic'.</msg>
+<arg>id=profilePic</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-04-09T11:33:27.293563" elapsed="0.152532"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-04-09T11:33:32.447270" level="INFO">Slept 5 seconds.</msg>
+<arg>5 seconds</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-04-09T11:33:27.446095" elapsed="5.001175"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-04-09T11:33:32.520697" level="INFO">Current page contains text 'Change Profile Picture'.</msg>
+<arg>Change Profile Picture</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-04-09T11:33:32.448205" elapsed="0.072492"/>
+</kw>
+<doc>Test logging in success</doc>
+<status status="PASS" start="2024-04-09T11:33:22.478392" elapsed="10.042305"/>
+</test>
+<status status="PASS" start="2024-04-09T11:33:22.163388" elapsed="10.359308"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="redirectToEditProfile">redirectToEditProfile</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

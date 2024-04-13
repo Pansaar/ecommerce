@@ -75,6 +75,7 @@ const Index = () => {
     const handleSave = async () => {
         try {
             const response = await axios.post(`/api/editMyMerchant?user=${userParam}&productId=${productIdParam}`, {
+                name: products.name,
                 category: products.category,
                 price: products.price,
                 description: products.description,
@@ -97,6 +98,11 @@ const Index = () => {
             console.error('Error deleting product:', error);
         }
     };
+
+    useEffect(() => {
+        console.log(products);
+    }, [products]);
+    
 
     return (
         <div>
@@ -124,6 +130,21 @@ const Index = () => {
                                     ) : (
                                         <span onClick={() => handleEdit('price')}>
                                             ฿<span style={{ fontSize: '20px' }}>{products.price}</span>
+                                        </span>
+                                    )}
+                                </p>
+                                <p style={{ color: '#800020', marginLeft: '10px', paddingTop: '10px' }}>
+                                    {editableFields.name ? (
+                                        <input
+                                            type="text"
+                                            value={products.name}
+                                            onChange={(event) => handleFieldChange(event, 'name')}
+                                            autoFocus
+                                            ref={(ref) => inputRefs.current['name'] = ref}
+                                        />
+                                    ) : (
+                                        <span onClick={() => handleEdit('name')}>
+                                            {products.name}
                                         </span>
                                     )}
                                 </p>

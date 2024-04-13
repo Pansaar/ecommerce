@@ -15,6 +15,8 @@ Test Fetch Product Amount Successfully
     Should Be Equal As Strings    ${response.status_code}    200
     ${response_body}=    Convert To String    ${response.content}
     Should Contain    ${response_body}    Product updated successfully
+    Should Contain    ${response_body}    prodAmount
+    
 
 Test Fetch Product Amount User Not Found
     [Documentation]    Test fetching product amount when user is not found
