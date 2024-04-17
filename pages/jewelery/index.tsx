@@ -22,8 +22,7 @@ const Index = () => {
         const response = await axios.get(`/api/fetchJewelery`);
         const newProducts = response.data;
         if (showProducts.length < 4) {
-          console.log(showProducts.length)
-            console.log('Fetching terminated');
+          console.log('Fetching terminated');
         } else if (showProducts.length >= 4) {
             const updatedProducts = [...showProducts.slice(0, -showProducts.length-1), ...newProducts];
             const fetchCount = Math.ceil(updatedProducts.length / 4);
