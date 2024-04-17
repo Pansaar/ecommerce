@@ -5,15 +5,16 @@ import axios from 'axios';
 import TopNav1 from '../../components/top-nav1';
 import LeftNav from '../../components/left-nav';
 import TopNav2 from '../../components/top-nav2';
+import useProductIdStore from '../../store/products';
 
 const Index = () => {
   const router = useRouter();
   const searchParam = router.query.result;
   const userParam = router.query.user;
-  const [showProducts, setShowProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const [isFetching, setIsFetching] = useState(false)
   const [moreProducts, setMoreProducts] = useState(-4)
+  const { product, setProduct } = useProductIdStore();
 
   function applyMouseEnter(index) {
     if (index >= 0) {
@@ -33,23 +34,6 @@ const Index = () => {
     }  
   }
 
-  useEffect(() => {
-    setIsLoading(true)
-    async function fetchProducts() {
-      try {
-        const response = await axios.get(`/api/searchProduct?result=${encodeURIComponent(searchParam as string)}`); // Update endpoint name
-        setShowProducts(response.data.reverse());
-        setIsLoading(false)
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    }
-
-    if (searchParam) {
-      fetchProducts();
-    }
-  }, [searchParam]);
-
   function productView(user, productId) {
     router.push(`productView?user=${encodeURIComponent(user)}&productId=${encodeURIComponent(productId)}`)
   }
@@ -61,7 +45,7 @@ const Index = () => {
       <LeftNav />
       {isLoading ? <p>Fetching products...</p>:
       <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%'}}>
-      {showProducts.slice(moreProducts).reverse().map((product, index) => (
+      {product.slice().reverse().map((product, index) => (
         <div id = {`prodContainer${index}`} key={index} onMouseEnter={() => applyMouseEnter(index)} onMouseLeave={() => applyMouseLeave(index)} style={{
           width: '20%',
           flex: '0 0 auto',

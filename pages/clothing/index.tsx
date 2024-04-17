@@ -1,4 +1,3 @@
-// index.js
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -13,24 +12,45 @@ const Index = () => {
   const [showProducts, setShowProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { authenticatedUser } = useAuthStore();
-  const { productId, setProductId } = useProductIdStore()
+  const { productId, setProductId } = useProductIdStore();
+  const [moreProducts, setMoreProducts] = useState(-4);
+  const [isFetching, setIsFetching] = useState(false)
 
-
-  useEffect(() => {
-    setIsLoading(true);
-    const fetchClothing = async () => {
-      try {
+  async function loadMoreProducts() {
+    setIsFetching(true);
+    try {
         const response = await axios.get(`/api/fetchClothing`);
-        setShowProducts(response.data.reverse());
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        setIsLoading(false);
-      }
-    };
+        const newProducts = response.data;
+        if (showProducts.length < 4) {
+          console.log(showProducts.length)
+            console.log('Fetching terminated');
+        } else if (showProducts.length >= 4) {
+            const updatedProducts = [...showProducts.slice(0, -showProducts.length-1), ...newProducts];
+            const fetchCount = Math.ceil(updatedProducts.length / 4);
+            const slicedProducts = updatedProducts.slice(0, fetchCount * 4);
+            setShowProducts(slicedProducts);
+            setMoreProducts(prevMoreProducts => prevMoreProducts - 4);
+        }
+    } catch (error) {
+        console.error('Error fetching more products:', error);
+    } finally {
+        setIsFetching(false);
+    }
+}
 
-    fetchClothing();
-  }, [productId]);
+useEffect(() => {
+  setIsLoading(true)
+  async function fetchProducts() {
+    try {
+      const response = await axios.get('/api/fetchClothing');
+      setShowProducts(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  }
+  fetchProducts();
+}, [productId]);
 
   const handleProductClick = async (user, productId) => {
     const selectedProductId = productId;
@@ -53,24 +73,23 @@ const Index = () => {
       setProductId(selectedProductId);
   };
 
-
-  const handleMouseEnter = (index) => {
-    setShowProducts(prevProducts => prevProducts.map((product, i) => {
-      if (i === index) {
-        return { ...product, isHovered: true };
+  function onMouseEnterApply(index) {
+    if (index >= 0) {
+      const imageElement = document.getElementById(`prodContainer${index}`);
+      if (imageElement) {
+        imageElement.style.backgroundColor = 'lightGrey';
       }
-      return product;
-    }));
-  };
+    }
+  }
 
-  const handleMouseLeave = (index) => {
-    setShowProducts(prevProducts => prevProducts.map((product, i) => {
-      if (i === index) {
-        return { ...product, isHovered: false };
+  function onMouseLeaveApply(index) {
+    if (index >= 0) {
+      const imageElement = document.getElementById(`prodContainer${index}`);
+      if (imageElement) {
+        imageElement.style.backgroundColor = 'white';
       }
-      return product;
-    }));
-  };
+    }
+  }
 
   return (
     <div>
@@ -78,13 +97,16 @@ const Index = () => {
       <TopNav2 />
       <LeftNav />
       {isLoading ? <p>Fetching products...</p> :
-      <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%'}}>
-        {showProducts.map((product, index) => (
+      <div>
+        <p style={{display: isFetching ? 'block': 'none'}}>Fetching more products...</p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+        {showProducts.slice(moreProducts).reverse().map((product, index) => (
           <div
             key={index}
+            id={`prodContainer${index}`}
             onClick={() => handleProductClick(authenticatedUser, product.id)}
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
+            onMouseEnter={() => onMouseEnterApply(index)}
+            onMouseLeave={() => onMouseLeaveApply(index)}
             style={{
               width: '20%',
               flex: '0 0 auto',
@@ -96,11 +118,13 @@ const Index = () => {
             }}
           >
             <img src={product.image} alt={product.name} style={{ width: '100%', height: '150px', display: 'block', margin: 'auto' }} />
-            <p style={{marginTop: '40px'}}>{product.name}</p>
+            <p style={{ marginTop: '40px' }}>{product.name}</p>
             <p>฿{product.price}</p>
             <p>Remaining: {product.amount}</p>
           </div>
         ))}
+      </div>
+      <h3 style={{display: 'flex', cursor: 'pointer', color: '#800020', fontWeight: '200', justifyContent: 'center'}} id='moreProducts' onClick={loadMoreProducts}>More Products</h3>
       </div>
       }
     </div>

@@ -50,7 +50,7 @@ const Index = () => {
             <LeftNav />
             {isLoading ? <p>Fetching products...</p>:
             <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-                {products.map((product, index) => (
+                {products.reverse().map((product, index) => (
                     <div
                         id={`prodContainer${index}`}
                         key={index}
