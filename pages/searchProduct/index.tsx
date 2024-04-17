@@ -9,11 +9,8 @@ import useProductIdStore from '../../store/products';
 
 const Index = () => {
   const router = useRouter();
-  const searchParam = router.query.result;
   const userParam = router.query.user;
   const [isLoading, setIsLoading] = useState(false)
-  const [isFetching, setIsFetching] = useState(false)
-  const [moreProducts, setMoreProducts] = useState(-4)
   const { product, setProduct } = useProductIdStore();
 
   function applyMouseEnter(index) {
@@ -44,6 +41,7 @@ const Index = () => {
       <TopNav2 />
       <LeftNav />
       {isLoading ? <p>Fetching products...</p>:
+      <div>
       <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%'}}>
       {product.slice().reverse().map((product, index) => (
         <div id = {`prodContainer${index}`} key={index} onMouseEnter={() => applyMouseEnter(index)} onMouseLeave={() => applyMouseLeave(index)} style={{
@@ -61,6 +59,8 @@ const Index = () => {
 
         </div>
       ))}
+      </div>
+      <h3 style={{fontWeight: '200', color: '#800020', justifyContent: 'center', display: 'flex', cursor: 'pointer'}}>More Products</h3>
       </div>
       }
     </div>
