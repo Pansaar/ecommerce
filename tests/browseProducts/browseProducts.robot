@@ -9,10 +9,12 @@ Product Search Success
     Input Text    id=browseProducts    I
     Click Element    id=search
     Sleep    15s
+    Page Should Contain    Iphone by Pansaar
 
 Product Lazy Loading Success
     Open Browser    http://localhost:3000/home?user=pansaar1553    Chrome
-    Wait Until Element Is Visible    id=prodContainer0    timeout=20s
+    Sleep    10s
     Click Element    id=moreProducts
     Sleep    10s
+    Page Should Contain Element    id=prodContainer8
 

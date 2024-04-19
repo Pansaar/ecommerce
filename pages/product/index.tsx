@@ -186,7 +186,7 @@ useEffect(() => {
           </div>
         ))}
       </div>
-      <h3 style={{display: 'flex', cursor: 'pointer', color: '#800020', fontWeight: '200', justifyContent: 'center'}} id='moreProducts' onClick={loadMoreProducts}>More Products</h3>
+      <h3 style={{display: 'flex', cursor: 'pointer', color: isFetching ? 'grey': '#800020', fontWeight: '200', justifyContent: 'center'}} id='moreProducts' onClick={loadMoreProducts}>More Products</h3>
       </div>
       }
     </div>
