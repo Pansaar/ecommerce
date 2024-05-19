@@ -143,10 +143,10 @@ const Index = () => {
                             </button>
                         </form>
                     </div>
-                    <div id='purchaseDiv' style={{display: 'none', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', width: '300px', height: '300px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: '2px 2px 5px grey', textAlign: 'center', padding: '20px'}}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width={15} style={{ fill: 'grey', position: 'absolute', top: '15px', right: '15px', cursor: 'pointer' }} onClick={() => document.getElementById('purchaseDiv').style.display = 'none'}><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
-                        <h4>Scan to Purchase</h4>
-                {qrCodeDataURL && <img src={qrCodeDataURL} />}
+                    <div id='purchaseDiv' style={{display: 'none', position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', width: '300px', height: '400px', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', boxShadow: '2px 2px 5px grey', textAlign: 'center', padding: '20px'}}>
+                        <img src='promptpay_logo.png' style={{width: '70%', zIndex: '0'}} />
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width={15} style={{ fill: 'grey', position: 'absolute', top: '15px', right: '15px', cursor: 'pointer', zIndex: '1' }} onClick={() => document.getElementById('purchaseDiv').style.display = 'none'}><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" /></svg>
+                {qrCodeDataURL && <img src={qrCodeDataURL} style={{width: '230px'}}/>}
             </div>
                 </div>
                 

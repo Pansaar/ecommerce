@@ -7,6 +7,7 @@ interface PromptPayOptions {
 
 export async function generatePromptPayQRCode(mobileNumber: string, options?: PromptPayOptions): Promise<string> {
     const payload = generatePayload(mobileNumber, options);
+    console.log(payload)
 
     try {
         const qrCodeDataURL = await QRCode.toDataURL(payload);
