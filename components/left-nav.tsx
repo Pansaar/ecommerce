@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import useLeftNavStateStore from '../store/left-nav';
+import useLeftNavStateStore from './../store/left-nav';
 import { useRouter } from 'next/router';
-import useAuthStore from '../store/user-auth';
+import useAuthStore from './../store/user-auth';
 
 const LeftNav = () => {
   const { showNav, setShowNav } = useLeftNavStateStore();

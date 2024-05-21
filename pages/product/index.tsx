@@ -35,6 +35,8 @@ const Index = () => {
             response = await axios.get(`/api/fetchFood`);
         } else if (router.query.category === 'beauty') {
             response = await axios.get(`/api/fetchBeauty`);
+        } else if (router.query.category === undefined) {
+            response = await axios.get(`/api/homeProducts`)
         }
 
         if (response && response.data) {
@@ -75,6 +77,8 @@ useEffect(() => {
           response = await axios.get('/api/fetchFood');
         } else if (router.query.category === 'beauty') {
           response = await axios.get('/api/fetchBeauty');
+        } else if (router.query.category === undefined) {
+          response = await axios.get('/api/homeProducts');
         }
   
         if (response && response.data) {

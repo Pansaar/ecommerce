@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: Cluster35834
+      MONGO_INITDB_ROOT_PASSWORD: 15531553
+      MONGO_REPLICA_HOST: localhost
+      MONGO_REPLICA_PORT: 8000
+    ports:
+      - '8000:8000'
+
+  node_app:
+    build: .
+    depends_on:
+      - mongo
+    environment:
+      DATABASE_URL: "mongodb+srv://Cluster35834:15531553@cluster35834.dogsowr.mongodb.net/myFirstDatabase"
+    ports:
+      - '3000:3000'
+    working_dir: /app
+    command: npm start
+

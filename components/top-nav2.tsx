@@ -103,7 +103,18 @@ const TopNav2 = () => {
         setIsSearching(false)
         console.log('Search not found');
       }
-    }
+    } else if(window.location.pathname === '/product' && router.query.category === undefined) {
+      const response = await axios.get(`/api/homeProducts?user=${userParam}`);
+      const foundItems = response.data.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
+        if (foundItems) {
+        await setProduct(foundItems);
+        router.push(`/product?user=${authenticatedUser}&search=${search}`)
+        setIsSearching(false)
+      } else if(!foundItems) {
+        setIsSearching(false)
+        console.log('Search not found');
+      }
+    } 
   }     
         
 

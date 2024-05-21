@@ -1,5 +1,5 @@
 import React from 'react'
-import useLeftNavStateStore from '../store/left-nav';
+import useLeftNavStateStore from './../store/left-nav';
 
 const topNav1 = () => {
   const { showNav, setShowNav } = useLeftNavStateStore();

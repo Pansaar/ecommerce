@@ -34,6 +34,7 @@ model Products {
   cartItems     CartItem[]
 }
 
+
 model ShoppingCart {
   id            String       @id @default(auto()) @map("_id") @db.ObjectId
   shopper       User?        @relation(fields: [shopperId], references: [id])

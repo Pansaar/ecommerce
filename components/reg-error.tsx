@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import useRegErrorStore from '../store/reg-error';
+import useRegErrorStore from './../store/reg-error';
 
 const useRegError = () => {
   const { isVisible, setShowError, message, setMessage } = useRegErrorStore();

@@ -143,7 +143,7 @@ const Home = () => {
             width={80}
             style={{
               position: 'absolute',
-              top: '90%',
+              top: '60%',
               right: '90%',
               cursor: 'pointer',
             }}
@@ -161,7 +161,7 @@ const Home = () => {
             width={80}
             style={{
               position: 'absolute',
-              top: '90%',
+              top: '60%',
               left: '90%',
               cursor: 'pointer'
             }}
@@ -191,7 +191,7 @@ const Home = () => {
       const selectedProductId = product.id;
       if (selectedProductId) {
         try {
-          const response = await axios.get(`/api/fetchSellerId?user=${userParam}&productId=${selectedProductId}`);
+          const response = await axios.get(`/api/fetchSellerId?user=${authenticatedUser}&productId=${selectedProductId}`);
           const browsingUser = response.data.user;
           const sellerId = response.data.sellerId;
           if (sellerId === browsingUser) {

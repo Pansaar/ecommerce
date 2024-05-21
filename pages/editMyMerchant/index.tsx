@@ -125,7 +125,11 @@ const Index = () => {
                                             value={products.price}
                                             onChange={(event) => handleFieldChange(event, 'price')}
                                             autoFocus
-                                            ref={(ref) => inputRefs.current['price'] = ref}
+                                            ref={(ref: HTMLInputElement) => {
+                                                if (ref) {
+                                                    inputRefs.current['price'] = ref;
+                                                }
+                                            }}                                            
                                         />
                                     ) : (
                                         <span onClick={() => handleEdit('price')}>
@@ -140,7 +144,11 @@ const Index = () => {
                                             value={products.name}
                                             onChange={(event) => handleFieldChange(event, 'name')}
                                             autoFocus
-                                            ref={(ref) => inputRefs.current['name'] = ref}
+                                            ref={(ref: HTMLInputElement) => {
+                                                if (ref) {
+                                                    inputRefs.current['name'] = ref;
+                                                }
+                                            }}     
                                         />
                                     ) : (
                                         <span onClick={() => handleEdit('name')}>
@@ -154,7 +162,12 @@ const Index = () => {
                                             type="text"
                                             value={products.amount.toString()}
                                             onChange={(event) => handleFieldChange(event, 'amount')}
-                                            ref={(ref) => inputRefs.current['amount'] = ref}
+                                            autoFocus
+                                            ref={(ref) => {
+                                                if (ref) {
+                                                    inputRefs.current['amount'] = ref;
+                                                }
+                                            }}     
                                         />
                                     ) : (
                                         <span onClick={() => handleEdit('amount')}>
@@ -168,7 +181,12 @@ const Index = () => {
                                             type="text"
                                             value={products.category}
                                             onChange={(event) => handleFieldChange(event, 'category')}
-                                            ref={(ref) => inputRefs.current['category'] = ref}
+                                            autoFocus
+                                            ref={(ref) => {
+                                                if (ref) {
+                                                    inputRefs.current['category'] = ref;
+                                                }
+                                            }}     
                                         />
                                     ) : (
                                         <span onClick={() => handleEdit('category')}>
@@ -182,7 +200,12 @@ const Index = () => {
                                             type="text"
                                             value={products.description}
                                             onChange={(event) => handleFieldChange(event, 'description')}
-                                            ref={(ref) => inputRefs.current['description'] = ref}
+                                            autoFocus
+                                            ref={(ref) => {
+                                                if (ref) {
+                                                    inputRefs.current['description'] = ref;
+                                                }
+                                            }}     
                                         />
                                     ) : (
                                         <span onClick={() => handleEdit('description')}>
