@@ -174,7 +174,7 @@ useEffect(() => {
             onMouseEnter={() => onMouseEnterApply(index)}
             onMouseLeave={() => onMouseLeaveApply(index)}
             style={{
-              width: '20%',
+              width: '18%',
               flex: '0 0 auto',
               margin: '50px 20px 20px 20px',
               cursor: 'pointer',

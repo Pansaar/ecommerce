@@ -131,7 +131,7 @@ const Home = () => {
           {imagePath && (
             <img
               src={imagePath}
-              style={{ maxWidth: '100%', height: '900px', boxShadow: '1px 1px 2px grey' }}
+              style={{ width: '100vw', height: '900px', boxShadow: '1px 1px 2px grey' }}
               alt="Image"
             />
           )}
@@ -178,7 +178,7 @@ const Home = () => {
     id={`prodContainer${index}`}
     key={index}
     style={{
-      width: '20%',
+      width: '18%',
       flex: '0 0 auto',
       margin: '50px 20px 20px 20px',
       cursor: 'pointer',

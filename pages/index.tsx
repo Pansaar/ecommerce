@@ -69,10 +69,14 @@ const Login = () => {
   return(
     <div className='d-flex flex-column vh-100 align-items-center justify-content-center'>
       <title>Login</title>
-      <h2>Login</h2>
+      <div style={{border: '1px lightGrey', padding: '80px 60px', boxShadow: '5px 2px 30px lightGrey'}}>
+      <h2 style={{display: 'flex', justifyContent: 'center'}}>Login</h2>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      <div style={{marginTop: '40px'}}>
+      <h5>Username</h5>
       <input
         type="text"
+        autoComplete='off'
         id='username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
@@ -81,7 +85,11 @@ const Login = () => {
         onKeyPress={handleKeyPress}
         placeholder='Username'
         maxLength={25}
+        style={{width: '300px', padding: '5px', border: 'solid 1px lightGrey', borderRadius: '5px'}}
       />
+      </div>
+      <div>
+      <h5 style={{marginTop: '10px'}}>Password</h5>
       <input
         type="password"
         id='password'
@@ -92,13 +100,16 @@ const Login = () => {
         onKeyPress={handleKeyPress}
         placeholder='Password'
         maxLength={25}
+        style={{width: '300px', padding: '5px', border: 'solid 1px lightGrey', borderRadius: '5px'}}
       />
-      <button id='submit' type="button" onClick={handleLogin} className='mb-3' disabled={submitted || loading}>
+      </div>
+      <button id='submit' type="button" onClick={handleLogin} className='mb-3' disabled={submitted || loading} style={{marginTop: '40px', backgroundColor: '#800020', padding: '10px 100px', border: 'solid 1px white', color: 'white', borderRadius: '5px', display: 'block', margin: 'auto'}}>
         {loading ? 'Logging in...' : 'Login'}
       </button>
-      <a onClick={toRegister} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ cursor: "pointer", textDecoration: isHovered ? "underline" : "none" }}>
+      <a onClick={toRegister} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ cursor: "pointer", textDecoration: isHovered ? "underline" : "none", display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
         Don't have an account? Register here
       </a>
+    </div>
     </div>
   );
 };
