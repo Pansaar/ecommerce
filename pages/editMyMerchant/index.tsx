@@ -4,6 +4,7 @@ import TopNav1 from '../../components/top-nav1';
 import { useRouter } from 'next/router';
 import TopNav2 from '../../components/top-nav2';
 import LeftNav from '../../components/left-nav';
+import useAuthStore from '../../store/user-auth';
 
 interface Product {
     category: string | number | readonly string[];
@@ -22,6 +23,7 @@ const Index = () => {
     const productIdParam = router.query.productId;
     const userParam = router.query.user;
     const inputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+    const { authenticatedUser } = useAuthStore();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -40,6 +42,12 @@ const Index = () => {
             fetchProduct();
         }
     }, [productIdParam, userParam]);
+
+    useEffect(() => {
+        if(authenticatedUser !== userParam) {
+          router.push(`/home?user=${authenticatedUser}`)
+        }
+      },[userParam])
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {

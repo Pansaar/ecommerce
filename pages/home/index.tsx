@@ -59,7 +59,11 @@ const Home = () => {
     }
 }
 
-  
+  useEffect(() => {
+    if(authenticatedUser !== userParam) {
+      router.push(`/home?user=${authenticatedUser}`)
+    }
+  },[userParam])
 
   useEffect(() => {
     async function fetchData() {

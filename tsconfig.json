@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/searchProduct", "pages/slipVerify", "pages/slipVerify"],
+, "pages/searchProduct", "pages/slipVerify", "pages/slipVerify", "pages/editMyMerchant"],
   "exclude": [
     "node_modules"
   ]

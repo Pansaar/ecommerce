@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import TopNav1 from '../../components/top-nav1';
 import LeftNav from '../../components/left-nav';
+import useAuthStore from '../../store/user-auth';
 
 const Index = () => {
   const router = useRouter();
@@ -10,6 +11,7 @@ const Index = () => {
   const [products, setProducts] = useState([]);
   const [cartItemAmounts, setCartItemAmounts] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
+  const { authenticatedUser } = useAuthStore();
 
   useEffect(() => {
     const fetchShoppingCart = async () => {
@@ -27,6 +29,12 @@ const Index = () => {
   
     fetchShoppingCart();
   }, [userParam]);
+
+  useEffect(() => {
+    if(authenticatedUser !== userParam) {
+      router.push(`/home?user=${authenticatedUser}`)
+    }
+  },[userParam])
 
   const deleteShoppingCartProduct = async (productId) => {
     try {

@@ -32,8 +32,6 @@ const Login = () => {
       if (response.status === 200) {
         setAuthenticated(true);
         setAuthenticatedUser(username);
-  
-        // Clear form fields
         setPassword('');
         setErrorMessage('');
         setLoading(false);
@@ -103,7 +101,7 @@ const Login = () => {
         style={{width: '300px', padding: '5px', border: 'solid 1px lightGrey', borderRadius: '5px'}}
       />
       </div>
-      <button id='submit' type="button" onClick={handleLogin} className='mb-3' disabled={submitted || loading} style={{marginTop: '40px', backgroundColor: '#800020', padding: '10px 100px', border: 'solid 1px white', color: 'white', borderRadius: '5px', display: 'block', margin: 'auto'}}>
+      <button id='submit' type="button" onClick={handleLogin} className='mb-3' disabled={submitted || loading} style={{marginTop: '20px', backgroundColor: '#800020', padding: '10px 100px', border: 'solid 1px white', color: 'white', borderRadius: '5px', display: 'block', margin: 'auto'}}>
         {loading ? 'Logging in...' : 'Login'}
       </button>
       <a onClick={toRegister} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} style={{ cursor: "pointer", textDecoration: isHovered ? "underline" : "none", display: 'flex', justifyContent: 'center', marginTop: '20px'}}>

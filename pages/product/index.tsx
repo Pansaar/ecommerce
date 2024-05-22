@@ -16,10 +16,17 @@ const Index = () => {
   const [moreProducts, setMoreProducts] = useState(-4);
   const [isFetching, setIsFetching] = useState(false)
   const [searchMode, setSearchMode] = useState(false)
+  const userParam = router.query.user;
 
   useEffect(() => {
     setSearchMode(router.query.search !== undefined);
   }, [router.query.search]);
+
+  useEffect(() => {
+    if(authenticatedUser !== userParam) {
+      router.push(`/home?user=${authenticatedUser}`)
+    }
+  },[userParam])
 
   async function loadMoreProducts() {
     setIsFetching(true);

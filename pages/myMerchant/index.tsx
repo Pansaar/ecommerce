@@ -82,6 +82,12 @@ const Index = () => {
   };
 }
 
+  useEffect(() => {
+    if(authenticatedUser !== userParam) {
+      router.push(`/home?user=${authenticatedUser}`)
+    }
+  },[userParam])
+
   return (
     <div>
       <TopNav1 />
