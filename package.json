@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "echo brewing... && echo ready to serve! 🍺 && next dev",
+    "brew": "echo brewing... && echo ready to serve! 🍺 && next dev",
     "start": "next build && next start"
   }
 }
